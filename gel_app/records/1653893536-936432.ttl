@@ -1,0 +1,37 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ns1: <http://purl.org/spar/fabio/> .
+@prefix ns2: <http://purl.org/spar/biro/> .
+@prefix ns3: <http://dbpedia.org/ontology/> .
+@prefix ns4: <https://w3id.org/digestgce/> .
+@prefix ns5: <http://prismstandard.org/namespaces/basic/2.0/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://w3id.org/digestgel/1653893536-936432> a ns1:ReportDocument ;
+    rdfs:label "Tarozzi, Massimiliano. (Ed.), Inguaggiato, Carla (2016.0). Global Citizenship Education in Europe.  A Comparative Study on Education Policies across 10 EU Countries. Global Schools." ;
+    ns5:publicationDate <https://w3id.org/digestgce/vocabularies/2016> ;
+    dcterms:language <https://w3id.org/digestgce/vocabularies/english> ;
+    dcterms:publisher <https://w3id.org/digestgel/1653893507-245588> ;
+    dcterms:title "Global Citizenship Education in Europe.  A Comparative Study on Education Policies across 10 EU Countries" ;
+    ns2:isReferencedBy "Tarozzi, Massimiliano. (Ed.), Inguaggiato, Carla (2016.0). Global Citizenship Education in Europe.  A Comparative Study on Education Policies across 10 EU Countries. Global Schools." ;
+    ns1:hasURL "http://www.globalschools.education/News/Is-GCE-integrated-in-primary-education-in-Europe" ;
+    ns4:firstAuthor <https://w3id.org/digestgel/1653893507-239157'> .
+
+<https://w3id.org/digestgel/1653893536-936432/> rdfs:label "Tarozzi, Massimiliano. (Ed.), Inguaggiato, Carla (2016.0). Global Citizenship Education in Europe.  A Comparative Study on Education Policies across 10 EU Countries. Global Schools." ;
+    ns3:currentStatus "published"^^xsd:string ;
+    ns2:isReferencedBy "Tarozzi, Massimiliano. (Ed.), Inguaggiato, Carla (2016.0). Global Citizenship Education in Europe.  A Comparative Study on Education Policies across 10 EU Countries. Global Schools." ;
+    prov:generatedAtTime "2022-07-08T15:10:03.965265"^^xsd:dateTime ;
+    prov:wasAttributedTo <https://w3id.org/digestgel/marilena-dot-daquino2-at-unibo-dot-it> ;
+    prov:wasInfluencedBy <https://w3id.org/digestgel/marilena-dot-daquino2-at-unibo-dot-it> .
+
+<https://w3id.org/digestgce/vocabularies/2016> rdfs:label "2016"^^xsd:string .
+
+<https://w3id.org/digestgce/vocabularies/english> rdfs:label "English"^^xsd:string .
+
+<https://w3id.org/digestgel/1653893507-239157'> rdfs:label "Tarozzi, Massimiliano"^^xsd:string .
+
+<https://w3id.org/digestgel/1653893507-245588> rdfs:label "Global Schools"^^xsd:string .
+
+<https://w3id.org/digestgel/marilena-dot-daquino2-at-unibo-dot-it> rdfs:label "marilena.daquino2@unibo.it" .
+

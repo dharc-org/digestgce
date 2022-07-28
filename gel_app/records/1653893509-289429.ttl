@@ -1,0 +1,42 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ns1: <http://prismstandard.org/namespaces/basic/2.0/> .
+@prefix ns2: <http://purl.org/spar/biro/> .
+@prefix ns3: <http://dbpedia.org/ontology/> .
+@prefix ns4: <https://w3id.org/digestgel/> .
+@prefix ns5: <http://purl.org/spar/fabio/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ns4:1653893509-289429 a ns5:JournalArticle ;
+    rdfs:label "der Schee, Joop van, Béneker, Tine (2018). Geography Education and Global Understanding: Exploring Some Ideas and Trends in a Fast-Changing World. 71-82" ;
+    ns1:doi "10.1007/978-3-319-77216-5_6" ;
+    ns1:pageRange "71-82" ;
+    ns1:publicationDate <https://w3id.org/digestgel/vocabularies/2018> ;
+    dcterms:language <https://w3id.org/digestgel/vocabularies/english> ;
+    dcterms:title "Geography Education and Global Understanding: Exploring Some Ideas and Trends in a Fast-Changing World" ;
+    ns2:isReferencedBy "der Schee, Joop van, Béneker, Tine (2018). Geography Education and Global Understanding: Exploring Some Ideas and Trends in a Fast-Changing World. 71-82" ;
+    ns5:hasPrimarySubjectTerm <https://w3id.org/digestgel/vocabularies/formal-education> ;
+    ns5:hasURL "https://link.springer.com/chapter/10.1007%2F978-3-319-77216-5_6" ;
+    ns4:firstAuthor ns4:1653893507-24108 ;
+    ns4:secondAuthor ns4:1653893507-229864 .
+
+<https://w3id.org/digestgel/1653893509-289429/> rdfs:label "der Schee, Joop van, Béneker, Tine (2018). Geography Education and Global Understanding: Exploring Some Ideas and Trends in a Fast-Changing World. 71-82" ;
+    ns3:currentStatus "modified"^^xsd:string ;
+    ns2:isReferencedBy "der Schee, Joop van, Béneker, Tine (2018). Geography Education and Global Understanding: Exploring Some Ideas and Trends in a Fast-Changing World. 71-82" ;
+    prov:generatedAtTime "2022-07-28T11:46:24.493461"^^xsd:dateTime ;
+    prov:wasAttributedTo ns4:marilena-dot-daquino2-at-unibo-dot-it ;
+    prov:wasInfluencedBy ns4:marilena-dot-daquino2-at-unibo-dot-it .
+
+ns4:1653893507-229864 rdfs:label "Béneker, Tine"^^xsd:string .
+
+ns4:1653893507-24108 rdfs:label "der Schee, Joop van"^^xsd:string .
+
+<https://w3id.org/digestgel/vocabularies/2018> rdfs:label "2018"^^xsd:string .
+
+<https://w3id.org/digestgel/vocabularies/english> rdfs:label "English"^^xsd:string .
+
+<https://w3id.org/digestgel/vocabularies/formal-education> rdfs:label "formal education"^^xsd:string .
+
+ns4:marilena-dot-daquino2-at-unibo-dot-it rdfs:label "marilena.daquino2@unibo.it" .
+

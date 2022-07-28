@@ -1,0 +1,26 @@
+$def with (user,is_git_auth,project,alert)
+
+$var user = user
+$var is_git_auth = is_git_auth
+$var project = project
+
+<section class="row articleBox">
+  <form id="loginMask" class="col-md-8 col-sm-8 col-lg-12" action="" method="POST">
+    <section class="row">
+      <section class="homeheading col-md-6 col-lg-6 col-sm-8">
+        <section class="label col-12">USERNAME</section>
+        <input type="text" name="username" value="">
+        <section class="label col-12">PASSWORD</section>
+        <input type="text" name="password" value="">
+        $if alert:
+          <p>$alert</p>
+      </section>
+      <section class="buttonsSection col-md-12 col-lg-12 col-sm-8">
+        <input id="submitLogin" class="btn btn-dark" type="submit" value="Login"/>
+      </section>
+
+
+    </section>
+
+  </form>
+</section>

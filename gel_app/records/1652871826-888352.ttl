@@ -1,0 +1,61 @@
+@prefix ns1: <http://purl.org/vocab/frbr/core#> .
+@prefix ns2: <http://purl.org/dc/terms/> .
+@prefix ns3: <http://dbpedia.org/ontology/> .
+@prefix ns4: <https://w3id.org/digestgce/> .
+@prefix ns5: <http://www.w3.org/ns/prov#> .
+@prefix ns6: <http://purl.org/spar/biro/> .
+@prefix ns7: <http://purl.org/spar/fabio/> .
+@prefix ns8: <http://prismstandard.org/namespaces/basic/2.0/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://w3id.org/digestgce/1652871826-888352> a ns7:BookChapter ;
+    rdfs:label "Arregi Orue, J. I., Sáenz del Castillo Velasco, A., Ugalde Gorostiza, A. I. (2018). Sumak Kawsay. Una innovación didáctica en clave intercultural para una enseñanza de la educación para el desarrollo sostenible desde la didáctica de las ciencias sociales. In: López, Esther, García Ruiz, Carmen Rosa, Sánchez, M. (eds.) Buscando formas de enseñar: Investigar para innovar en didáctica de las ciencias sociales. Universidad de Valladolid-Asociación Universitaria de Profesorado de Didáctica de las Ciencias Sociales (AUPDCS). 749-758" ;
+    ns8:pageRange "749-758" ;
+    ns8:publicationDate <https://w3id.org/digestgce/vocabularies/2018> ;
+    ns2:language <https://w3id.org/digestgce/vocabularies/spanish> ;
+    ns2:publisher <https://w3id.org/digestgce/1652871803-403576> ;
+    ns2:title "Sumak Kawsay. Una innovación didáctica en clave intercultural para una enseñanza de la educación para el desarrollo sostenible desde la didáctica de las ciencias sociales" ;
+    ns6:isReferencedBy "Arregi Orue, J. I., Sáenz del Castillo Velasco, A., Ugalde Gorostiza, A. I. (2018). Sumak Kawsay. Una innovación didáctica en clave intercultural para una enseñanza de la educación para el desarrollo sostenible desde la didáctica de las ciencias sociales. In: López, Esther, García Ruiz, Carmen Rosa, Sánchez, M. (eds.) Buscando formas de enseñar: Investigar para innovar en didáctica de las ciencias sociales. Universidad de Valladolid-Asociación Universitaria de Profesorado de Didáctica de las Ciencias Sociales (AUPDCS). 749-758" ;
+    ns7:hasURL "https://www.researchgate.net/publication/336588659_Buscando_formas_de_ensenar_Investigar_para_innovar_en_Didactica_de_las_Ciencias_Sociales#fullTextFileContent" ;
+    ns1:partOf <https://w3id.org/digestgce/1652871803-406077> ;
+    ns4:firstAuthor <https://w3id.org/digestgce/1652871803-382422> ;
+    ns4:firstEditor <https://w3id.org/digestgce/1652871803-393385> ;
+    ns4:secondAuthor <https://w3id.org/digestgce/1652871803-397597> ;
+    ns4:secondEditor <https://w3id.org/digestgce/1652871803-386814> ;
+    ns4:thirdAuthor <https://w3id.org/digestgce/1652871803-397977> ;
+    ns4:thirdEditor <https://w3id.org/digestgce/1652871803-397631> .
+
+<https://w3id.org/digestgce/1652871826-888352/> rdfs:label "Arregi Orue, J. I., Sáenz del Castillo Velasco, A., Ugalde Gorostiza, A. I. (2018). Sumak Kawsay. Una innovación didáctica en clave intercultural para una enseñanza de la educación para el desarrollo sostenible desde la didáctica de las ciencias sociales. In: López, Esther, García Ruiz, Carmen Rosa, Sánchez, M. (eds.) Buscando formas de enseñar: Investigar para innovar en didáctica de las ciencias sociales. Universidad de Valladolid-Asociación Universitaria de Profesorado de Didáctica de las Ciencias Sociales (AUPDCS). 749-758" ;
+    ns3:currentStatus "published"^^xsd:string ;
+    ns6:isReferencedBy "Arregi Orue, J. I., Sáenz del Castillo Velasco, A., Ugalde Gorostiza, A. I. (2018). Sumak Kawsay. Una innovación didáctica en clave intercultural para una enseñanza de la educación para el desarrollo sostenible desde la didáctica de las ciencias sociales. In: López, Esther, García Ruiz, Carmen Rosa, Sánchez, M. (eds.) Buscando formas de enseñar: Investigar para innovar en didáctica de las ciencias sociales. Universidad de Valladolid-Asociación Universitaria de Profesorado de Didáctica de las Ciencias Sociales (AUPDCS). 749-758" ;
+    ns5:generatedAtTime "2022-05-18T15:09:15.575263"^^xsd:dateTime ;
+    ns5:wasAttributedTo ns4:marilena-dot-daquino2-at-unibo-dot-it ;
+    ns5:wasInfluencedBy ns4:anonymous .
+
+<https://w3id.org/digestgce/1652871803-382422> rdfs:label "Arregi Orue, J. I."^^xsd:string .
+
+<https://w3id.org/digestgce/1652871803-386814> rdfs:label "García Ruiz, Carmen Rosa"^^xsd:string .
+
+<https://w3id.org/digestgce/1652871803-393385> rdfs:label "López, Esther"^^xsd:string .
+
+<https://w3id.org/digestgce/1652871803-397597> rdfs:label "Sáenz del Castillo Velasco, A."^^xsd:string .
+
+<https://w3id.org/digestgce/1652871803-397631> rdfs:label "Sánchez, M."^^xsd:string .
+
+<https://w3id.org/digestgce/1652871803-397977> rdfs:label "Ugalde Gorostiza, A. I."^^xsd:string .
+
+<https://w3id.org/digestgce/1652871803-403576> rdfs:label "Universidad de Valladolid-Asociación Universitaria de Profesorado de Didáctica de las Ciencias Sociales (AUPDCS)"^^xsd:string .
+
+<https://w3id.org/digestgce/1652871803-406077> rdfs:label "Buscando formas de enseñar: Investigar para innovar en didáctica de las ciencias sociales"^^xsd:string .
+
+ns4:anonymous rdfs:label "anonymous" .
+
+ns4:marilena-dot-daquino2-at-unibo-dot-it rdfs:label "marilena.daquino2@unibo.it" .
+
+<https://w3id.org/digestgce/vocabularies/2018> rdfs:label "2018"^^xsd:string .
+
+<https://w3id.org/digestgce/vocabularies/spanish> rdfs:label "Spanish"^^xsd:string .
+

@@ -1,0 +1,30 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ns1: <http://purl.org/spar/biro/> .
+@prefix ns2: <http://prismstandard.org/namespaces/basic/2.0/> .
+@prefix ns3: <http://dbpedia.org/ontology/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://w3id.org/digestgel/1657286041-488294> a <http://purl.org/spar/fabio/JournalArticle> ;
+    rdfs:label "prova" ;
+    ns2:publicationDate <https://w3id.org/digestgce/vocabularies/1969> ;
+    dcterms:language <https://w3id.org/digestgce/vocabularies/polish> ;
+    dcterms:title "prova titolo" ;
+    ns1:isReferencedBy "prova" .
+
+<https://w3id.org/digestgel/1657286041-488294/> rdfs:label "prova" ;
+    ns3:currentStatus "modified"^^xsd:string ;
+    ns1:isReferencedBy "prova" ;
+    prov:generatedAtTime "2022-07-08T15:15:34.516493"^^xsd:dateTime ;
+    prov:wasAttributedTo <https://w3id.org/digestgel/anonymous> ;
+    prov:wasInfluencedBy <https://w3id.org/digestgel/marilena-dot-daquino2-at-unibo-dot-it> .
+
+<https://w3id.org/digestgce/vocabularies/1969> rdfs:label "1969"^^xsd:string .
+
+<https://w3id.org/digestgce/vocabularies/polish> rdfs:label "Polish"^^xsd:string .
+
+<https://w3id.org/digestgel/anonymous> rdfs:label "anonymous" .
+
+<https://w3id.org/digestgel/marilena-dot-daquino2-at-unibo-dot-it> rdfs:label "marilena.daquino2@unibo.it" .
+

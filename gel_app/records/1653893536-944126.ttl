@@ -1,0 +1,44 @@
+@prefix ns1: <http://purl.org/dc/terms/> .
+@prefix ns2: <http://www.w3.org/ns/prov#> .
+@prefix ns3: <http://purl.org/spar/fabio/> .
+@prefix ns4: <http://purl.org/spar/biro/> .
+@prefix ns5: <http://prismstandard.org/namespaces/basic/2.0/> .
+@prefix ns6: <https://w3id.org/digestgel/> .
+@prefix ns7: <http://dbpedia.org/ontology/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://w3id.org/digestgel/1653893536-944126> a ns3:ReportDocument ;
+    rdfs:label "Giraud, C. (2020.0). Les différentes faces de l’éducation à la citoyenneté mondiale. Enabel (Belgium)." ;
+    ns5:publicationDate <https://w3id.org/digestgel/vocabularies/2020> ;
+    ns1:language <https://w3id.org/digestgel/vocabularies/french> ;
+    ns1:title "Les différentes faces de l’éducation à la citoyenneté mondiale. Enabel (Belgium)" ;
+    ns4:isReferencedBy "Giraud, C. (2020.0). Les différentes faces de l’éducation à la citoyenneté mondiale. Enabel (Belgium)." ;
+    ns3:hasPrimarySubjectTerm <https://w3id.org/digestgel/vocabularies/conceptual-publications>,
+        <https://w3id.org/digestgel/vocabularies/theoretical> ;
+    ns3:hasSubjectTerm <https://w3id.org/digestgel/vocabularies/conceptual-publications>,
+        <https://w3id.org/digestgel/vocabularies/theoretical> ;
+    ns3:hasURL "https://wikicm.be/les-differentes-faces-de-leducation-a-la-citoyennete-mondiale/" ;
+    ns6:firstAuthor <https://w3id.org/digestgel/1653893507-231925> .
+
+<https://w3id.org/digestgel/1653893536-944126/> rdfs:label "Giraud, C. (2020.0). Les différentes faces de l’éducation à la citoyenneté mondiale. Enabel (Belgium)." ;
+    ns7:currentStatus "published"^^xsd:string ;
+    ns4:isReferencedBy "Giraud, C. (2020.0). Les différentes faces de l’éducation à la citoyenneté mondiale. Enabel (Belgium)." ;
+    ns2:generatedAtTime "2022-07-11T12:56:56.849669"^^xsd:dateTime ;
+    ns2:wasAttributedTo ns6:marilena-dot-daquino2-at-unibo-dot-it ;
+    ns2:wasInfluencedBy ns6:marilena-dot-daquino2-at-unibo-dot-it .
+
+<https://w3id.org/digestgel/1653893507-231925> rdfs:label "Giraud, C."^^xsd:string .
+
+<https://w3id.org/digestgel/vocabularies/2020> rdfs:label "2020"^^xsd:string .
+
+<https://w3id.org/digestgel/vocabularies/french> rdfs:label "French"^^xsd:string .
+
+ns6:marilena-dot-daquino2-at-unibo-dot-it rdfs:label "marilena.daquino2@unibo.it" .
+
+<https://w3id.org/digestgel/vocabularies/conceptual-publications> rdfs:label "conceptual publications"^^xsd:string .
+
+<https://w3id.org/digestgel/vocabularies/theoretical> rdfs:label "theoretical"^^xsd:string .
+

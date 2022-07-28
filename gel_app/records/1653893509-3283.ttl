@@ -1,0 +1,46 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ns1: <http://purl.org/spar/fabio/> .
+@prefix ns2: <http://purl.org/spar/biro/> .
+@prefix ns3: <http://dbpedia.org/ontology/> .
+@prefix ns4: <http://prismstandard.org/namespaces/basic/2.0/> .
+@prefix ns5: <https://w3id.org/digestgel/> .
+@prefix ns6: <http://purl.org/vocab/frbr/core#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ns5:1653893509-3283 a ns1:JournalArticle ;
+    rdfs:label "Alldred, Neil (2016). A Long Look Back: Some Critical Reflections on Development Education in Ireland and the UK. Policy & Practice: A Development Education Review, 23, 208-226" ;
+    ns4:pageRange "208-226" ;
+    ns4:publicationDate <https://w3id.org/digestgel/vocabularies/2016> ;
+    ns4:volume "23" ;
+    dcterms:language <https://w3id.org/digestgel/vocabularies/english> ;
+    dcterms:title "A Long Look Back: Some Critical Reflections on Development Education in Ireland and the UK" ;
+    ns2:isReferencedBy "Alldred, Neil (2016). A Long Look Back: Some Critical Reflections on Development Education in Ireland and the UK. Policy & Practice: A Development Education Review, 23, 208-226" ;
+    ns1:hasPrimarySubjectTerm <https://w3id.org/digestgel/vocabularies/conceptual-publications>,
+        <https://w3id.org/digestgel/vocabularies/theoretical> ;
+    ns1:hasURL "https://www.developmenteducationreview.com/sites/default/files/article-pdfs/Alldred%20Viewpoint23.pdf" ;
+    ns6:partOf ns5:1653893507-242861 ;
+    ns5:firstAuthor ns5:1653893507-227839 .
+
+<https://w3id.org/digestgel/1653893509-3283/> rdfs:label "Alldred, Neil (2016). A Long Look Back: Some Critical Reflections on Development Education in Ireland and the UK. Policy & Practice: A Development Education Review, 23, 208-226" ;
+    ns3:currentStatus "published"^^xsd:string ;
+    ns2:isReferencedBy "Alldred, Neil (2016). A Long Look Back: Some Critical Reflections on Development Education in Ireland and the UK. Policy & Practice: A Development Education Review, 23, 208-226" ;
+    prov:generatedAtTime "2022-07-26T11:50:27.955852"^^xsd:dateTime ;
+    prov:wasAttributedTo ns5:marilena-dot-daquino2-at-unibo-dot-it ;
+    prov:wasInfluencedBy ns5:marilena-dot-daquino2-at-unibo-dot-it .
+
+ns5:1653893507-227839 rdfs:label "Alldred, Neil"^^xsd:string .
+
+ns5:1653893507-242861 rdfs:label "Policy & Practice: A Development Education Review"^^xsd:string .
+
+<https://w3id.org/digestgel/vocabularies/2016> rdfs:label "2016"^^xsd:string .
+
+<https://w3id.org/digestgel/vocabularies/conceptual-publications> rdfs:label "conceptual publications"^^xsd:string .
+
+<https://w3id.org/digestgel/vocabularies/english> rdfs:label "English"^^xsd:string .
+
+<https://w3id.org/digestgel/vocabularies/theoretical> rdfs:label "theoretical"^^xsd:string .
+
+ns5:marilena-dot-daquino2-at-unibo-dot-it rdfs:label "marilena.daquino2@unibo.it" .
+

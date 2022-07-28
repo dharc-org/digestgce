@@ -1,0 +1,78 @@
+$def with (user,project,is_git_auth,authors_count,publications_count,language_count,publishers_count,journals_count,topics_count,authors_over_years,publication_over_years,language_over_years)
+
+$var user = user
+$var is_git_auth = is_git_auth
+$var project = project
+
+<header class="row">
+	<h3 class="col-md-12 col-lg-12 col-sm-12">$project in numbers</h3>
+</header>
+<section class="row articleBox">
+  <section class="col-md-12 col-sm-12">
+
+    <section class="row counters">
+      <h2 class="col-md-6 col-sm-12">How is the literature <br>on Global Citizenship Education evolving?</h2>
+      <section class="counterBox col-md-2 col-sm-5">
+        <p class="counterNum">$authors_count</p>
+        <p class="counterLabel">Authors</p>
+      </section>
+      <section class="counterBox col-md-2 col-sm-5">
+        <p class="counterNum">$publications_count</p>
+        <p class="counterLabel">Publications</p>
+      </section>
+      <section class="counterBox col-md-2 col-sm-5">
+        <p class="counterNum">$language_count</p>
+        <p class="counterLabel">Languages</p>
+      </section>
+      <section class="counterBox col-md-2 col-sm-5">
+        <p class="counterNum">$publishers_count</p>
+        <p class="counterLabel">Publishers</p>
+      </section>
+      <section class="counterBox col-md-2 col-sm-5">
+        <p class="counterNum">$journals_count</p>
+        <p class="counterLabel">Journals</p>
+      </section>
+      <section class="counterBox col-md-2 col-sm-5">
+        <p class="counterNum">$topics_count</p>
+        <p class="counterLabel">Topics</p>
+      </section>
+
+    </section>
+    <hr class="charthr">
+    <section class="stats_block row">
+      <section class="col-md-5 col-sm-12">
+        <h2>More publications are published every year</h2>
+        <p>The number of yearly scholarly publications is stable. </p>
+      </section>
+      <div id="publication_over_years" class="col-md-6 col-sm-12" style="height:40vh"></div>
+    </section>
+    <hr class="charthr">
+    <section class="stats_block row">
+      <div id="authors_over_years" class="col-md-6 col-sm-12" style="height:40vh"></div>
+      <section class="col-md-5 col-sm-12">
+        <h2>Likewise, more authors are involved in the research</h2>
+        <p>The number of authors has constantly increased over the last 7 years, showing the research community has consolidated. </p>
+      </section>
+    </section>
+    <hr class="charthr">
+    <section class="stats_block row">
+      <div id="language_over_years" class="col-md-8 col-sm-12" style="height:80vh"></div>
+      <section class="col-md-3 col-sm-12">
+        <h2>Do you speak...</h2>
+        <p>The language of reasearch is english, no doubt. Notably, publications in english represent about half of the works published every year on average, followed by the spanish and portuguese-speaking communities, which are the most represented after English. </p>
+        <p class="chart_caption">Click on the language names to compare more/less of them, or move the top bar to narrow/expand the time span.</p>
+      </section>
+    </section>
+  </section>
+</section>
+<!-- Resources -->
+<script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+<!-- authors_over_years-->
+<script id="authors_over_years_data" type="application/json">$:authors_over_years</script>
+<script> barchart("authors_over_years","year","count"); </script>
+<script id="publication_over_years_data" type="application/json">$:publication_over_years</script>
+<script> barchart("publication_over_years","year","count"); </script>
+<script id="language_over_years_data" type="application/json">$:language_over_years</script>
+<script> stacked_barchart("language_over_years","year","count","english,italian,spanish,portuguese,german,french,polish,dutch"); </script>

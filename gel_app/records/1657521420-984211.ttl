@@ -1,0 +1,40 @@
+@prefix ns1: <http://purl.org/spar/biro/> .
+@prefix ns2: <http://www.w3.org/ns/prov#> .
+@prefix ns3: <http://dbpedia.org/ontology/> .
+@prefix ns4: <http://purl.org/spar/fabio/> .
+@prefix ns5: <https://w3id.org/digestgel/> .
+@prefix ns6: <http://purl.org/dc/terms/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://w3id.org/digestgel/1657521420-984211> a ns4:JournalArticle ;
+    rdfs:label "hello worlds" ;
+    ns6:language <https://w3id.org/digestgel/vocabularies/english> ;
+    ns1:isReferencedBy "hello worlds" ;
+    ns4:hasPrimarySubjectTerm <https://w3id.org/digestgel/vocabularies/community-work>,
+        <https://w3id.org/digestgel/vocabularies/conceptual-publications> ;
+    ns4:hasSubjectTerm <https://w3id.org/digestgel/vocabularies/conceptual-publications>,
+        <https://w3id.org/digestgel/vocabularies/educational-partnerships> ;
+    ns5:firstAuthor <https://w3id.org/digestgel/1653893507-239157'> .
+
+<https://w3id.org/digestgel/1657521420-984211/> rdfs:label "hello worlds" ;
+    ns3:currentStatus "modified"^^xsd:string ;
+    ns1:isReferencedBy "hello worlds" ;
+    ns2:generatedAtTime "2022-07-11T08:37:43.225827"^^xsd:dateTime ;
+    ns2:wasAttributedTo ns5:marilena-dot-daquino2-at-unibo-dot-it ;
+    ns2:wasInfluencedBy ns5:marilena-dot-daquino2-at-unibo-dot-it .
+
+<https://w3id.org/digestgel/1653893507-239157'> rdfs:label "Tarozzi, Massimiliano"^^xsd:string .
+
+<https://w3id.org/digestgel/vocabularies/community-work> rdfs:label "community work"^^xsd:string .
+
+<https://w3id.org/digestgel/vocabularies/educational-partnerships> rdfs:label "educational partnerships"^^xsd:string .
+
+<https://w3id.org/digestgel/vocabularies/english> rdfs:label "English"^^xsd:string .
+
+ns5:marilena-dot-daquino2-at-unibo-dot-it rdfs:label "marilena.daquino2@unibo.it" .
+
+<https://w3id.org/digestgel/vocabularies/conceptual-publications> rdfs:label "conceptual publications"^^xsd:string .
+

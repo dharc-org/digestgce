@@ -1,0 +1,32 @@
+@prefix ns1: <http://purl.org/dc/terms/> .
+@prefix ns2: <http://dbpedia.org/ontology/> .
+@prefix ns3: <http://prismstandard.org/namespaces/basic/2.0/> .
+@prefix ns4: <http://www.w3.org/ns/prov#> .
+@prefix ns5: <http://purl.org/spar/biro/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://w3id.org/digestgce/1653892865-2174132> a <http://purl.org/spar/fabio/JournalArticle> ;
+    rdfs:label "example in education" ;
+    ns3:publicationDate <https://w3id.org/digestgce/vocabularies/1969> ;
+    ns1:language <https://w3id.org/digestgce/vocabularies/polish> ;
+    ns1:title "the same" ;
+    ns5:isReferencedBy "example in education" .
+
+<https://w3id.org/digestgce/1653892865-2174132/> rdfs:label "example in education" ;
+    ns2:currentStatus "modified"^^xsd:string ;
+    ns5:isReferencedBy "example in education" ;
+    ns4:generatedAtTime "2022-05-30T08:42:23.203352"^^xsd:dateTime ;
+    ns4:wasAttributedTo <https://w3id.org/digestgce/anonymous> ;
+    ns4:wasInfluencedBy <https://w3id.org/digestgce/mdaquino> .
+
+<https://w3id.org/digestgce/anonymous> rdfs:label "anonymous" .
+
+<https://w3id.org/digestgce/mdaquino> rdfs:label "mdaquino" .
+
+<https://w3id.org/digestgce/vocabularies/1969> rdfs:label "1969"^^xsd:string .
+
+<https://w3id.org/digestgce/vocabularies/polish> rdfs:label "Polish"^^xsd:string .
+

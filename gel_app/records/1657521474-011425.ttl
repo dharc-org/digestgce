@@ -1,0 +1,42 @@
+@prefix ns1: <https://w3id.org/digestgel/> .
+@prefix ns2: <http://purl.org/spar/biro/> .
+@prefix ns3: <http://purl.org/dc/terms/> .
+@prefix ns4: <http://dbpedia.org/ontology/> .
+@prefix ns5: <http://www.w3.org/ns/prov#> .
+@prefix ns6: <http://purl.org/spar/fabio/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://w3id.org/digestgel/1657521474-011425> a ns6:JournalArticle ;
+    rdfs:label "hello world" ;
+    ns3:language <https://w3id.org/digestgel/vocabularies/english> ;
+    ns2:isReferencedBy "hello world" ;
+    ns6:hasPrimarySubjectTerm <https://w3id.org/digestgel/vocabularies/training-of-trainers> ;
+    ns6:hasSubjectTerm <https://w3id.org/digestgel/vocabularies/theoretical> ;
+    ns1:firstAuthor <https://w3id.org/digestgel/1653893507-239157> ;
+    ns1:secondAuthor <https://w3id.org/digestgel/1653893507-23287> ;
+    ns1:thirdAuthor <https://w3id.org/digestgel/1653893507-230649> .
+
+<https://w3id.org/digestgel/1657521474-011425/> rdfs:label "hello world" ;
+    ns4:currentStatus "modified"^^xsd:string ;
+    ns2:isReferencedBy "hello world" ;
+    ns5:generatedAtTime "2022-07-11T09:04:38.736946"^^xsd:dateTime ;
+    ns5:wasAttributedTo ns1:marilena-dot-daquino2-at-unibo-dot-it ;
+    ns5:wasInfluencedBy ns1:marilena-dot-daquino2-at-unibo-dot-it .
+
+<https://w3id.org/digestgel/1653893507-230649> rdfs:label "Cubillos-Vega, Carla"^^xsd:string .
+
+<https://w3id.org/digestgel/1653893507-23287> rdfs:label "Inguaggiato, Carla"^^xsd:string .
+
+<https://w3id.org/digestgel/1653893507-239157> rdfs:label "Tarozzi, Massimiliano"^^xsd:string .
+
+<https://w3id.org/digestgel/vocabularies/english> rdfs:label "English"^^xsd:string .
+
+<https://w3id.org/digestgel/vocabularies/theoretical> rdfs:label "theoretical"^^xsd:string .
+
+<https://w3id.org/digestgel/vocabularies/training-of-trainers> rdfs:label "training of trainers"^^xsd:string .
+
+ns1:marilena-dot-daquino2-at-unibo-dot-it rdfs:label "marilena.daquino2@unibo.it" .
+

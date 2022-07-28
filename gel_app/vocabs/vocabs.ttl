@@ -1,0 +1,93 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://w3id.org/digestgel/et-al> rdfs:label "et al." .
+
+<https://w3id.org/digestgel/vocabularies/1969> rdfs:label "1969" .
+
+<https://w3id.org/digestgel/vocabularies/2003> rdfs:label "2003" .
+
+<https://w3id.org/digestgel/vocabularies/2004> rdfs:label "2004" .
+
+<https://w3id.org/digestgel/vocabularies/2005> rdfs:label "2005" .
+
+<https://w3id.org/digestgel/vocabularies/2006> rdfs:label "2006" .
+
+<https://w3id.org/digestgel/vocabularies/2007> rdfs:label "2007" .
+
+<https://w3id.org/digestgel/vocabularies/2008> rdfs:label "2008" .
+
+<https://w3id.org/digestgel/vocabularies/2009> rdfs:label "2009" .
+
+<https://w3id.org/digestgel/vocabularies/2010> rdfs:label "2010" .
+
+<https://w3id.org/digestgel/vocabularies/2011> rdfs:label "2011" .
+
+<https://w3id.org/digestgel/vocabularies/2012> rdfs:label "2012" .
+
+<https://w3id.org/digestgel/vocabularies/2013> rdfs:label "2013" .
+
+<https://w3id.org/digestgel/vocabularies/2014> rdfs:label "2014" .
+
+<https://w3id.org/digestgel/vocabularies/2015> rdfs:label "2015" .
+
+<https://w3id.org/digestgel/vocabularies/2016> rdfs:label "2016" .
+
+<https://w3id.org/digestgel/vocabularies/2017> rdfs:label "2017" .
+
+<https://w3id.org/digestgel/vocabularies/2018> rdfs:label "2018" .
+
+<https://w3id.org/digestgel/vocabularies/2019> rdfs:label "2019" .
+
+<https://w3id.org/digestgel/vocabularies/2020> rdfs:label "2020" .
+
+<https://w3id.org/digestgel/vocabularies/2021> rdfs:label "2021" .
+
+<https://w3id.org/digestgel/vocabularies/2022> rdfs:label "2022" .
+
+<https://w3id.org/digestgel/vocabularies/community-work> rdfs:label "community work" .
+
+<https://w3id.org/digestgel/vocabularies/conceptual-publications> rdfs:label "conceptual publications" .
+
+<https://w3id.org/digestgel/vocabularies/dutch> rdfs:label "Dutch" .
+
+<https://w3id.org/digestgel/vocabularies/educational-partnerships> rdfs:label "educational partnerships" .
+
+<https://w3id.org/digestgel/vocabularies/english> rdfs:label "English" .
+
+<https://w3id.org/digestgel/vocabularies/formal-education> rdfs:label "formal education" .
+
+<https://w3id.org/digestgel/vocabularies/french> rdfs:label "French" .
+
+<https://w3id.org/digestgel/vocabularies/german> rdfs:label "German" .
+
+<https://w3id.org/digestgel/vocabularies/higher-education-research> rdfs:label "higher education research" .
+
+<https://w3id.org/digestgel/vocabularies/informal-education-including-youth-work> rdfs:label "informal education including youth work" .
+
+<https://w3id.org/digestgel/vocabularies/international-volunteering> rdfs:label "international volunteering" .
+
+<https://w3id.org/digestgel/vocabularies/italian> rdfs:label "Italian" .
+
+<https://w3id.org/digestgel/vocabularies/media> rdfs:label "media" .
+
+<https://w3id.org/digestgel/vocabularies/non-formal-education> rdfs:label "non-formal education" .
+
+<https://w3id.org/digestgel/vocabularies/policy-related-research> rdfs:label "policy related research" .
+
+<https://w3id.org/digestgel/vocabularies/polish> rdfs:label "Polish" .
+
+<https://w3id.org/digestgel/vocabularies/portuguese> rdfs:label "Portuguese" .
+
+<https://w3id.org/digestgel/vocabularies/spanish> rdfs:label "Spanish" .
+
+<https://w3id.org/digestgel/vocabularies/study-visits> rdfs:label "study visits" .
+
+<https://w3id.org/digestgel/vocabularies/teacher-education> rdfs:label "teacher education" .
+
+<https://w3id.org/digestgel/vocabularies/theoretical> rdfs:label "theoretical" .
+
+<https://w3id.org/digestgel/vocabularies/training-of-trainers> rdfs:label "training of trainers" .
+

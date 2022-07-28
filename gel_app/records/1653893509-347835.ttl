@@ -1,0 +1,46 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ns1: <http://prismstandard.org/namespaces/basic/2.0/> .
+@prefix ns2: <http://dbpedia.org/ontology/> .
+@prefix ns3: <http://purl.org/vocab/frbr/core#> .
+@prefix ns4: <http://purl.org/spar/fabio/> .
+@prefix ns5: <http://purl.org/spar/biro/> .
+@prefix ns6: <https://w3id.org/digestgel/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ns6:1653893509-347835 a ns4:JournalArticle ;
+    rdfs:label "Aleksiak, Dobrawa., Kuleta-Hulboj, Magdalena (2020). A Policy at a Standstill: A Critical Analysis of Global Education in the Polish National Curriculum. Policy and Practice: A Development Education Review, 31 32-54" ;
+    ns1:pageRange "32-54" ;
+    ns1:publicationDate <https://w3id.org/digestgel/vocabularies/2020> ;
+    ns1:volume "31" ;
+    dcterms:language <https://w3id.org/digestgel/vocabularies/english> ;
+    dcterms:title "A Policy at a Standstill: A Critical Analysis of Global Education in the Polish National Curriculum" ;
+    ns5:isReferencedBy "Aleksiak, Dobrawa., Kuleta-Hulboj, Magdalena (2020). A Policy at a Standstill: A Critical Analysis of Global Education in the Polish National Curriculum. Policy and Practice: A Development Education Review, 31 32-54" ;
+    ns4:hasPrimarySubjectTerm <https://w3id.org/digestgel/vocabularies/policy-related-research> ;
+    ns4:hasURL "https://www.developmenteducationreview.com/" ;
+    ns3:partOf ns6:1653893507-242352 ;
+    ns6:firstAuthor ns6:1653893507-227818 ;
+    ns6:secondAuthor ns6:1653893507-233562 .
+
+<https://w3id.org/digestgel/1653893509-347835/> rdfs:label "Aleksiak, Dobrawa., Kuleta-Hulboj, Magdalena (2020). A Policy at a Standstill: A Critical Analysis of Global Education in the Polish National Curriculum. Policy and Practice: A Development Education Review, 31 32-54" ;
+    ns2:currentStatus "modified"^^xsd:string ;
+    ns5:isReferencedBy "Aleksiak, Dobrawa., Kuleta-Hulboj, Magdalena (2020). A Policy at a Standstill: A Critical Analysis of Global Education in the Polish National Curriculum. Policy and Practice: A Development Education Review, 31 32-54" ;
+    prov:generatedAtTime "2022-07-28T11:57:40.881500"^^xsd:dateTime ;
+    prov:wasAttributedTo ns6:marilena-dot-daquino2-at-unibo-dot-it ;
+    prov:wasInfluencedBy ns6:marilena-dot-daquino2-at-unibo-dot-it .
+
+ns6:1653893507-227818 rdfs:label "Aleksiak, Dobrawa."^^xsd:string .
+
+ns6:1653893507-233562 rdfs:label "Kuleta-Hulboj, Magdalena"^^xsd:string .
+
+ns6:1653893507-242352 rdfs:label "Policy and Practice: A Development Education Review"^^xsd:string .
+
+<https://w3id.org/digestgel/vocabularies/2020> rdfs:label "2020"^^xsd:string .
+
+<https://w3id.org/digestgel/vocabularies/english> rdfs:label "English"^^xsd:string .
+
+<https://w3id.org/digestgel/vocabularies/policy-related-research> rdfs:label "policy related research"^^xsd:string .
+
+ns6:marilena-dot-daquino2-at-unibo-dot-it rdfs:label "marilena.daquino2@unibo.it" .
+
