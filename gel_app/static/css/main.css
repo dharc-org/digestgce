@@ -300,8 +300,13 @@ i.fa-info-circle:hover{ color: var(--color_violet);}
 #collapse_search {margin: 2em !important; color:white;}
 .recap_item {font-weight: bold;}
 .arrow:after {content:" \25be";}
-.arrow {cursor: pointer; padding-left: 4em;}
-.recap, .results {padding: 1em 1em 4em 4em;}
+.arrow {cursor: pointer; }
+/* .recap, .results {padding: 1em 1em 4em 4em;} */
+.recap {color: grey;}
+.result_checkbox {margin: 0px 1em;}
+.results {border-top: solid 1px; padding-top: 1em; margin-top: 1em;}
+#select_all_results:hover {cursor: pointer !important;}
+/* .single_result:nth-child(even) {background-color: #fff;} */
 
 .documentation {margin-top: 5em;}
 .documentation img {margin: 1em 0px; border: solid 1px grey; width: 100%;}

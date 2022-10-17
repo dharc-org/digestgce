@@ -32,6 +32,7 @@ RESOURCE_TEMPLATES = 'resource_templates/'
 TEMPLATE_LIST = RESOURCE_TEMPLATES+"template_list.json"
 ASK_CLASS = RESOURCE_TEMPLATES+"ask_class.json"
 NER = spacy.load("en_core_web_sm")
+FIELD_MAPPINGS = u.keys2name()
 
 # ROUTING
 
@@ -59,7 +60,8 @@ urls = (
 	prefix + '/savetheweb-(.+)','Savetheweb',
 	prefix + '/nlp','Nlp',
 	prefix + '/login_mask', 'Login_mask',
-	prefix + '/export', 'Export'
+	prefix + '/export', 'Export',
+	prefix + '/api/(.+)', 'Results'
 )
 
 app = web.application(urls, globals())
@@ -1253,7 +1255,20 @@ class Nlp(object):
 			results.append(result)
 		return json.dumps(results)
 
+class Results:
+	def GET(self, works_id):
+		base = conf.base
+		works = works_id.split('__')
+		text = ""
 
+		for work in works:
+			record = base+work
+			res_class = queries.getClass(record)
+			res_template = u.get_template_from_class(res_class)
+			data = dict(queries.getData(record+'/',res_template))
+			text += u.json2ris(data,res_template,FIELD_MAPPINGS)
+
+		return json.dumps(text)
 
 
 if __name__ == "__main__":

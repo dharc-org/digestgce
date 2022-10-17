@@ -47,7 +47,8 @@ $def with (content)
 					<span><a href="https://projects.dharc.unibo.it/digestgel/" class="logo_header">$content.project</a>
 					<a href="records">Explore</a>
 					<a href="charts">Charts</a></span>
-					<a href="search">Search</a></span>
+					<button class="btn btn-dark" onclick="window.location.href='search'" role="button">Search</button>
+					<!-- <a href="search" id="search_menu_page">Search</a></span> -->
 					$if content.user == 'anonymous' or content.user == 'unknown':
 						$if content.is_git_auth == True:
 							<!-- GCE only -->

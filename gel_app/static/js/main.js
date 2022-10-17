@@ -5,6 +5,21 @@ const geo_img = '<img src="https://www.geonames.org/img/globe.gif" style="width:
 
 $(document).ready(function() {
 
+  $("#select_all_results").click(function() {
+      var checkBoxes = $("input.result_checkbox");
+      checkBoxes.prop("checked", !checkBoxes.prop("checked"));
+  });
+
+  // GCE hide citation
+  $("p[property='http://purl.org/spar/biro/isReferencedBy']").parent().hide();
+  // GCE replace journal string in italic
+  var article_title = $("h2.articleTitle").text();
+  var journal_string = $("p[property='http://purl.org/vocab/frbr/core#partOf'] a").text();
+  if (article_title.includes(journal_string)) {
+    $("h2.articleTitle").html(function(_, html) {
+     return html.replace(journal_string, '<em>'+journal_string+'</em>');
+    });
+  }
   // GCE only search filters
   var filters = "<section class='col-4'><section class='checkbox_group_label label arrow' id='filter_year'>year</section>\
   <section class='checkbox_group_label label arrow' id='filter_subject'>subject</section>\
@@ -314,6 +329,53 @@ $(document).ready(function() {
 //////////////
 // BACKEND //
 //////////////
+
+function check_all() {
+    var button = $("#select_all_results");
+    var checkBoxes = $("input.result_checkbox");
+    checkBoxes.prop("checked", !checkBoxes.prop("checked"));
+
+};
+
+function save_txt() {
+  var anchor = document.getElementById("export_txt");
+  var text = '';
+  var checkboxes = document.querySelectorAll('.result_checkbox:checked');
+  for(var i=0; i < checkboxes.length; i++){
+    if (checkboxes[i].checked) {
+        text += $(checkboxes[i]).attr('value')+ '\n\n';
+    }
+  }
+  // download link
+  anchor.href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(text);
+  anchor.download = 'export.txt';
+}
+
+function save_ris() {
+  var checkboxes = document.querySelectorAll('.result_checkbox:checked');
+  var works_id = [];
+  for(var i=0; i < checkboxes.length; i++){
+    if (checkboxes[i].checked) { works_id.push($(checkboxes[i]).attr('id'));}
+  }
+  var anchor = document.getElementById("export_ris");
+  var cur_url = window.location.href
+  var api_url = cur_url.substr(0, cur_url.lastIndexOf("/"));
+  $.ajax({
+        type: 'GET',
+        url: api_url+'/api/' + works_id.join('__'),
+        headers: { Accept: '*/*'},
+        success: function(returnedJson) {
+          // var text = json2ris(returnedJson);
+          var text = JSON.parse(returnedJson);
+          console.log(text);
+          anchor.href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(text);
+          anchor.download = 'export.ris';
+        },
+        complete: function(returnedJson) {
+
+        }
+  });
+}
 
 function validateTemplateClass(form_id) {
   // validate

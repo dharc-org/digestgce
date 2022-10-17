@@ -11,88 +11,109 @@ $var project = project
 
 
 $ show_search = "show" if (results and len(results) == 0) or results is None else ""
-<div class="collapse $show_search" id="search_mask">
-    <section class="row">
-        <form id="searchForm" class="row col-md-12 col-sm-12 col-lg-12" action="" method="POST">
-          <section class="hide_checkboxes col-md-6 col-sm-12 row">
-            <section class="col-8">
-              $for input in search_form.inputs:
-                $if type(input) == Checkbox:
-                  <section class="col-md-4 col-sm-4 col-lg-12">
-                    $:input.pre
-                    $:input.render()
-                    $:input.description
-                  </section>
-            </section>
+<div class="corners collapse $show_search" id="search_mask">
+		<section class="row">
+				<form id="searchForm" class="row col-md-12 col-sm-12 col-lg-12" action="" method="POST">
+					<section class="hide_checkboxes col-md-6 col-sm-12 row">
+						<section class="col-8">
+							$for input in search_form.inputs:
+								$if type(input) == Checkbox:
+									<section class="col-md-4 col-sm-4 col-lg-12">
+										$:input.pre
+										$:input.render()
+										$:input.description
+									</section>
+						</section>
 
-          </section>
-          <section class="col-md-6 col-sm-12">
-            $for input in search_form.inputs:
-              $if type(input) != Checkbox:
-                <section class=" form_row">
-                  $ id = input.get_default_id()
-                  <section class="label col-12">
-                    $:input.description
-                  </section>
-                  <section class="col-md-12 col-sm-12 col-lg-12 input_or_select detect_web_page">
-                    $:input.pre
-                    $:input.render()
-                  </section>
-                  $if type(input) == Dropdown:
-                    <script type="text/javascript">
-                      $$('#$id').prepend($$('<option value="None">Select from the list</option>'));
-                    </script>
-                </section>
-            <section class="buttonsSection col-12">
-              <input id="search_record" class="btn btn-dark" type="submit" value="Search"/>
-            </section>
-          </section>
+					</section>
+					<section class="col-md-6 col-sm-12">
+						$for input in search_form.inputs:
+							$if type(input) != Checkbox:
+								<section class=" form_row">
+									$ id = input.get_default_id()
+									<section class="label col-12">
+										$:input.description
+									</section>
+									<section class="col-md-12 col-sm-12 col-lg-12 input_or_select detect_web_page">
+										$:input.pre
+										$:input.render()
+									</section>
+									$if type(input) == Dropdown:
+										<script type="text/javascript">
+											$$('#$id').prepend($$('<option value="None">Select from the list</option>'));
+										</script>
+								</section>
+						<section class="buttonsSection col-12">
+							<input id="search_record" class="btn btn-dark" type="submit" value="Search"/>
+						</section>
+					</section>
 
 
-        </form>
-    </section>
+				</form>
+		</section>
 </div>
 <section class="row corners">
-  <button id="collapse_search" data-toggle="collapse" data-target="#search_mask"> show / hide the research</button>
+	<button id="collapse_search" data-toggle="collapse" data-target="#search_mask"> show / hide the research mask</button>
 </section>
 <script type="text/javascript">
-  $$("#collapse_search").click(function(){
-        $$("#search_mask").collapse('toggle');
-    });
+	$$("#collapse_search").click(function(){
+				$$("#search_mask").collapse('toggle');
+		});
 </script>
 $if results:
-  $if len(results) > 0:
-    $if recap:
-      $ count = len(results)
-      <section class="recap col-12">
-        <p><span class="recap_item">$count</span> results. You searched for:</p>
-        <p>
-          $for k,v in recap.items():
-            $if len(v) == 1:
-              $k: <span class="recap_item">$v[0]</span>
-            $else:
-              $k:
-                $for vv in v[:-1]:
-                  <span class="recap_item">$vv</span>,
-                <span class="recap_item">$v[-1]</span>
-        </p>
-      </section>
-    <section class="results col-12">
-      $for result in results:
-        <section class="row">
-          <section class="col-1">
-            $result["year"]
-          </section>
-          <section class="col-2">
-            <p class="resource_class">$result["worktype"]</p>
-          </section>
-          <!--  -->
-          <section class="col-6">
-            <p><a href='view-$result["workid"]'>$result["citation"]</a></p>
-          </section>
-        </section>
-    </section>
-$if results and len(results) < 1 and len(alert) > 1:
-    <section class="results col-12">
-      <p>$alert</p>
-    </section>
+	$if len(results) > 0:
+		$if recap:
+			$ count = len(results)
+			<section class="row corners recap">
+
+				<p class="col-12"><span class="recap_item">$count</span> results. You searched for:
+					$for k,v in recap.items():
+						$if len(v) == 1:
+							<span class="recap_item">$v[0]</span> ($k)
+						$else:
+								$for vv in v[:-1]:
+									<span class="recap_item">$vv</span>,
+									<span class="recap_item">$v[-1]</span>
+								($k)
+				</p>
+
+				<p class="col-12 export_results">
+					<a onclick="check_all()" id="#select_all_results">Select all results</a> |
+					<a onclick="save_ris()" href="#" id="export_ris">Export to Zotero, Mendeley, Endnote and others (.ris)</a> |
+					<a onclick="save_txt()" href="#" id="export_txt">Export text (.txt)</a>
+				</p>
+			</section>
+		<section class="corners results col-10">
+			$for result in results:
+				<section class="row single_result">
+					<section class="col-md-2">
+						<input class="result_checkbox" type="checkbox" id="$result['workid']" value='$result["citation"]'>
+						$result["year"]
+					</section>
+					<section class="col-md-2">
+						<p class="resource_class">$result["worktype"]</p>
+					</section>
+					<!--  -->
+					<section class="col-md-8">
+						<p>$result["citation"]
+								$if result["doi"] != '':
+								DOI: $result["doi"]
+							<a href='view-$result["workid"]'>Read more</a></p>
+					</section>
+				</section>
+		</section>
+$if results == [] and len(alert) > 1:
+		<section class="results col-12">
+			<p>$alert</p>
+			<p><span class="recap_item">0</span> results. You searched for:</p>
+			<p>
+				$for k,v in recap.items():
+					$if len(v) == 1:
+						$k: <span class="recap_item">$v[0]</span>
+					$else:
+						$k:
+							$for vv in v[:-1]:
+								<span class="recap_item">$vv</span>,
+							<span class="recap_item">$v[-1]</span>
+			</p>
+		</section>

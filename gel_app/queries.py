@@ -204,7 +204,7 @@ def getClass(res_uri):
 		res_class.append(result["class"]["value"])
 	return res_class[0] if len(res_class) > 0 else ""
 
-def getData(graph,res_template):
+def getData(graph,res_template,addValues=''):
 	""" get a named graph and rebuild results for modifying the record"""
 	with open(res_template) as config_form:
 		fields = json.load(config_form)
@@ -215,18 +215,19 @@ def getData(graph,res_template):
 	patterns_string = ''.join(patterns)
 	#print("\npatterns_string\n",patterns_string)
 	queryNGraph = '''
-		PREFIX base: <'''+conf.base+'''>
-		PREFIX schema: <https://schema.org/>
-		PREFIX dbpedia: <http://dbpedia.org/ontology/>
-		SELECT DISTINCT *
-		WHERE { <'''+graph+'''> rdfs:label ?graph_title ;
-								dbpedia:currentStatus ?stage
-				GRAPH <'''+graph+'''>
-				{	?subject a <'''+res_class+'''> .
-					'''+patterns_string+'''
-					OPTIONAL {?subject schema:keywords ?keywords . ?keywords rdfs:label ?keywords_label . } }
-		}
-		'''
+			PREFIX base: <'''+conf.base+'''>
+			PREFIX schema: <https://schema.org/>
+			PREFIX dbpedia: <http://dbpedia.org/ontology/>
+			SELECT DISTINCT *
+			WHERE { '''+addValues+'''
+				<'''+graph+'''> rdfs:label ?graph_title ;
+									dbpedia:currentStatus ?stage
+					GRAPH <'''+graph+'''>
+					{	?subject a <'''+res_class+'''> .
+						'''+patterns_string+'''
+						OPTIONAL {?subject schema:keywords ?keywords . ?keywords rdfs:label ?keywords_label . } }
+			}
+			'''
 	sparql = SPARQLWrapper(conf.myEndpoint)
 	sparql.setQuery(queryNGraph)
 	sparql.setReturnFormat(JSON)
@@ -263,7 +264,7 @@ def getData(graph,res_template):
 
 				if compare_sublists([uri,label], data[k]) == False:
 					data[k].append([uri,label])
-	#print("############ data",data)
+	#print("############ data",res_template,data)
 	return data
 
 
@@ -531,11 +532,10 @@ def get_results(data):
 
 		if len(v) > 0 and field_type == "Textbox":
 			if field_value == "Literal":
-				q += "?"+k+" bds:search \""+v+"*\" . ?"+k+" bds:minRelevance '0.3'^^xsd:double . "
+				q += "?"+k+" bds:search \""+v+"\" . ?"+k+" bds:minRelevance '0.5'^^xsd:double ; bds:matchAllTerms 'true' . "
 				q += "?work <"+field_property+"> ?"+k+" . " if "|" not in field_property else "?work "+field_property+" ?"+k+" . "
-
 			if field_value == "URI":
-				q += "?"+k+" bds:search \""+v+"*\" . ?"+k+" bds:minRelevance '0.3'^^xsd:double . "
+				q += "?"+k+" bds:search \""+v+"\" . ?"+k+" bds:minRelevance '0.5'^^xsd:double ; bds:matchAllTerms 'true'. "
 				q += "?"+k+"URI rdfs:label ?"+k+" . ?work <"+field_property+"> ?"+k+"URI . " if "|" not in field_property else "?"+k+"URI rdfs:label ?"+k+" . ?work "+field_property+" ?"+k+"URI . "
 			recap[field_name].append(v)
 		if len(v) > 0 and field_type == "Checkbox":
@@ -557,7 +557,10 @@ def get_results(data):
 			q += "} . ?work <"+field_property+"> ?"+k+". "
 	# sort by year and type
 	# hardcoded for GCE
-	q += " ?work a ?worktype ; <http://purl.org/spar/biro/isReferencedBy> ?citation ; <http://prismstandard.org/namespaces/basic/2.0/publicationDate> ?date .} ORDER BY ?date ?citation ?worktype"
+	q += " ?work a ?worktype ; <http://purl.org/spar/biro/isReferencedBy> ?citation ; \
+			<http://prismstandard.org/namespaces/basic/2.0/publicationDate> ?date \
+			OPTIONAL { ?work <http://prismstandard.org/namespaces/basic/2.0/doi> ?doi }.} \
+			ORDER BY ?date ?citation ?worktype"
 	sparql_results = hello_blazegraph(q)
 	for result in sparql_results["results"]["bindings"]:
 		r = {}
@@ -565,8 +568,9 @@ def get_results(data):
 		r["citation"] = result["citation"]["value"]
 		r["year"] = result["date"]["value"].rsplit('/', 1)[-1]
 		r["workid"] = result["work"]["value"].rsplit('/', 1)[-1]
+		r["doi"] = result["doi"]["value"] if "doi" in result else ""
 		results.append(r)
-
+	#print(q, recap)
 	return results , recap
 
 def export_data():

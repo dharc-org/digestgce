@@ -380,3 +380,145 @@ def isnum(s):
 def camel_case_split(identifier):
     matches = re.finditer('.+?(?:(?<=[a-z])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])|$)', identifier)
     return [m.group(0) for m in matches]
+
+def keys2name():
+	""" Returns a mapping of fields RDF properties and IDs for each template"""
+	# get the list of templates urls
+	templates_list = []
+	mapping_id_label = {}
+	with open(TEMPLATE_LIST,'r') as tpl_file:
+		data = json.load(tpl_file)
+		for tpl in data:
+			if "example" not in tpl:
+				templates_list.append(tpl["template"])
+	# open each single template and create a Dictionary
+	# { template : {  id: label, id:label },
+	#  template2 : { id: label, ...} }
+	for tpl in templates_list:
+		tpl_mapping = {}
+		with open(tpl) as config_form:
+			fields = json.load(config_form)
+			for field in fields:
+				tpl_mapping[field["property"]] = field["id"]
+		mapping_id_label[tpl] = tpl_mapping
+	return mapping_id_label
+
+
+def json2ris(data,res_template,FIELD_MAPPINGS):
+	""" Transforms the results of getData() into a .ris file (export in search)"""
+	print("FIELD_MAPPINGS",FIELD_MAPPINGS)
+	print("\n\n\ndata",data)
+	type_vocab = {
+		"resource_templates/template-article.json": "JOUR",
+		"resource_templates/template-book_chapter.json":"CHAP",
+		"resource_templates/template-book.json": "BOOK",
+		"resource_templates/template-doctoral_thesis.json": "THES",
+		"resource_templates/template-example_template.json":"JOUR",
+		"resource_templates/template-journal_issue.json":"SER",
+		"resource_templates/template-report.json":"RPRT"
+	}
+	ris_text = ""
+
+	# TY
+	res_type = type_vocab[res_template] if res_template in type_vocab else "JOUR"
+	ris_text += "TY - "+ res_type + "\n"
+
+	auth1,auth2,auth3,auth4,auth5,auth6,auth7,auth8,auth9,auth10 = None,None,None,None,None,None,None,None,None,None
+	year,doi,issue,vol,pub,journal,lang,link,title = None,None,None,None,None,None,None,None,None
+	# AU
+	if "https://w3id.org/digestgel/firstAuthor" in FIELD_MAPPINGS[res_template]:
+		auth1 = find_field("https://w3id.org/digestgel/firstAuthor",FIELD_MAPPINGS[res_template])
+	if "https://w3id.org/digestgel/secondAuthor" in FIELD_MAPPINGS[res_template]:
+		auth2 = find_field("https://w3id.org/digestgel/secondAuthor",FIELD_MAPPINGS[res_template])
+	if "https://w3id.org/digestgel/thirdAuthor" in FIELD_MAPPINGS[res_template]:
+		auth3 = find_field("https://w3id.org/digestgel/thirdAuthor",FIELD_MAPPINGS[res_template])
+	if "https://w3id.org/digestgel/fourthAuthor" in FIELD_MAPPINGS[res_template]:
+		auth4 = find_field("https://w3id.org/digestgel/fourthAuthor",FIELD_MAPPINGS[res_template])
+	if "https://w3id.org/digestgel/fifthAuthor" in FIELD_MAPPINGS[res_template]:
+		auth5 = find_field("https://w3id.org/digestgel/fifthAuthor",FIELD_MAPPINGS[res_template])
+	if "https://w3id.org/digestgel/sixthAuthor" in FIELD_MAPPINGS[res_template]:
+		auth6 = find_field("https://w3id.org/digestgel/sixthAuthor",FIELD_MAPPINGS[res_template])
+	if "https://w3id.org/digestgel/seventhAuthor" in FIELD_MAPPINGS[res_template]:
+		auth7 = find_field("https://w3id.org/digestgel/seventhAuthor",FIELD_MAPPINGS[res_template])
+	if "https://w3id.org/digestgel/eighthAuthor" in FIELD_MAPPINGS[res_template]:
+		auth8 = find_field("https://w3id.org/digestgel/eighthAuthor",FIELD_MAPPINGS[res_template])
+	if "https://w3id.org/digestgel/ninthAuthor" in FIELD_MAPPINGS[res_template]:
+		auth9 = find_field("https://w3id.org/digestgel/ninthAuthor",FIELD_MAPPINGS[res_template])
+	if "https://w3id.org/digestgel/tenthAuthor" in FIELD_MAPPINGS[res_template]:
+		auth10 = find_field("https://w3id.org/digestgel/tenthAuthor",FIELD_MAPPINGS[res_template])
+
+	if auth1 and auth1 in data:
+		ris_text += "AU - "+ data[auth1][0][1] + "\n"
+	if auth2 and auth2 in data:
+		ris_text += "AU - "+ data[auth2][0][1] + "\n"
+	if auth3 and auth3 in data:
+		ris_text += "AU - "+ data[auth3][0][1] + "\n"
+	if auth4 and auth4 in data:
+		ris_text += "AU - "+ data[auth4][0][1] + "\n"
+	if auth5 and auth5 in data:
+		ris_text += "AU - "+ data[auth5][0][1] + "\n"
+	if auth6 and auth6 in data:
+		ris_text += "AU - "+ data[auth6][0][1] + "\n"
+	if auth7 and auth7 in data:
+		ris_text += "AU - "+ data[auth7][0][1] + "\n"
+	if auth8 and auth8 in data:
+		ris_text += "AU - "+ data[auth8][0][1] + "\n"
+	if auth9 and auth9 in data:
+		ris_text += "AU - "+ data[auth9][0][1] + "\n"
+	if auth10 and auth10 in data:
+		ris_text += "AU - "+ data[auth10][0][1] + "\n"
+
+	# PY
+	year = find_field("http://prismstandard.org/namespaces/basic/2.0/publicationDate",FIELD_MAPPINGS[res_template])
+	if year and year in data:
+		ris_text += "PY - "+ data[year][0][1] + "\n"
+
+	# DO
+	doi = find_field("http://prismstandard.org/namespaces/basic/2.0/doi", FIELD_MAPPINGS[res_template])
+	if doi and doi in data:
+		ris_text += "DO - "+ data[doi][0] + "\n"
+
+	# IS
+	issue = find_field("http://prismstandard.org/namespaces/basic/2.0/issueIdentifier", FIELD_MAPPINGS[res_template])
+	if issue and issue in data:
+		ris_text += "IS - "+ data[issue][0] + "\n"
+
+	# TI
+	title = find_field("http://purl.org/dc/terms/title", FIELD_MAPPINGS[res_template])
+	if title and title in data:
+		ris_text += "TI - "+ data[title][0] + "\n"
+
+	# JO
+	journal = find_field("http://purl.org/vocab/frbr/core#partOf", FIELD_MAPPINGS[res_template])
+	if journal and journal in data:
+		if res_type == "CHAP":
+			ris_text += "J2 - "+ data[journal][0][1] + "\n"
+		else:
+			ris_text += "JO - "+ data[journal][0][1] + "\n"
+
+	# VL
+	vol = find_field("http://prismstandard.org/namespaces/basic/2.0/volume", FIELD_MAPPINGS[res_template])
+	if vol and vol in data:
+		ris_text += "VL - "+ data[vol][0] + "\n"
+
+	# PB
+	pub = find_field("http://purl.org/dc/terms/publisher", FIELD_MAPPINGS[res_template])
+	if pub and pub in data:
+		ris_text += "PB - "+ data[pub][0][1] + "\n"
+
+	# LA
+	lang = find_field("http://purl.org/dc/terms/language", FIELD_MAPPINGS[res_template])
+	if lang and lang in data:
+		ris_text += "LA - "+ data[lang][0][1] + "\n"
+
+	# L2
+	link = find_field("http://purl.org/spar/fabio/hasURL", FIELD_MAPPINGS[res_template])
+	if link and link in data:
+		ris_text += "L2 - "+ data[link][0] + "\n"
+
+	ris_text += "DP - Digest Global Education and Learning\n"
+	ris_text += "ER  - \n"
+	return ris_text
+
+def find_field(f,d):
+	return d[f] if f in d else None
