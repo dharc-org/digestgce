@@ -213,11 +213,7 @@ def check_omonyms(cols):
 
 def get_entities(what):
     "interroga digest online e ritorna una tabella con nomi e URL delle persone"
-    q = Q_PEOPLE if what == 'people'
-        else Q_JOURNALS if what == 'journals'
-        else Q_PUBLISHERS if what == 'publishers'
-        else Q_BOOKS if what == 'books'
-        else Q_PEOPLE
+    q = Q_PEOPLE if what == 'people' else Q_JOURNALS if what == 'journals' else Q_PUBLISHERS if what == 'publishers' else Q_BOOKS if what == 'books' else Q_PEOPLE
     df = sparql_dataframe.get(ENDPOINT, q, post=True)
     return df
 
