@@ -71,7 +71,7 @@ Q_PUBLISHERS = """
 Q_BOOKS = """
   SELECT DISTINCT ?bookURI ?book WHERE {
 	?chapter a <http://purl.org/spar/fabio/BookChapter> ;
-    	<http://purl.org/vocab/frbr/core#partOf> ?bookURI .
+		<http://purl.org/vocab/frbr/core#partOf> ?bookURI .
 	?bookURI rdfs:label ?book .
   }
 """
@@ -79,12 +79,12 @@ Q_BOOKS = """
 # vocabularies
 
 COLUMNS = [ "reference (apa)", "publication type",
-           "title",
-           "author_1", "author_2", "author_3", "author_4", "author_5", "author_6", "author_7",
-           "author_8", "author_9", "author_10", "journal", "volume", "issue", "pages", "year",
-           "main_theme", "secondary_theme", "lang", "link", "doi", "booktitle", "publisher",
-           "editor_1", "editor_2", "editor_3", "editor_4", "editor_5", "editor_6", "editor_7",
-           "editor_8", "editor_9", "editor_10"]
+		   "title",
+		   "author_1", "author_2", "author_3", "author_4", "author_5", "author_6", "author_7",
+		   "author_8", "author_9", "author_10", "journal", "volume", "issue", "pages", "year",
+		   "main_theme", "secondary_theme", "lang", "link", "doi", "booktitle", "publisher",
+		   "editor_1", "editor_2", "editor_3", "editor_4", "editor_5", "editor_6", "editor_7",
+		   "editor_8", "editor_9", "editor_10"]
 
 # "Reports"
 PUBLICATION_TYPES = ['Academic Journal Article',
@@ -106,73 +106,73 @@ LANGUAGES_MAPPING = {"https://w3id.org/digestgel/vocabularies/polish": "Polish",
 "https://w3id.org/digestgel/vocabularies/english": "English"}
 
 PRIMARY_SUBJECTS = ["community work",
-                    "conceptual publications",
-                    "educational partnerships",
-                    "formal education",
-                    "higher education research",
-                    "informal education including youth work",
-                    "international volunteering",
-                    "media",
-                    "non-formal education",
-                    "policy related research",
-                    "study visits",
-                    "teacher education",
-                    "theoretical",
-                    "theoretical & conceptual publications",
-                    "training of trainers",
-                    "teaching material"]
+					"conceptual publications",
+					"educational partnerships",
+					"formal education",
+					"higher education research",
+					"informal education including youth work",
+					"international volunteering",
+					"media",
+					"non-formal education",
+					"policy related research",
+					"study visits",
+					"teacher education",
+					"theoretical",
+					"theoretical & conceptual publications",
+					"training of trainers",
+					"teaching material"]
 
 # missing  "theoretical & conceptual publications"
 PRIMARY_MAPPING = {
-    "https://w3id.org/digestgel/vocabularies/community-work": "community work",
-    "https://w3id.org/digestgel/vocabularies/conceptual-publications": "conceptual publications",
-    "https://w3id.org/digestgel/vocabularies/educational-partnerships": "educational partnerships",
-    "https://w3id.org/digestgel/vocabularies/formal-education": "formal education",
-    "https://w3id.org/digestgel/vocabularies/higher-education-research": "higher education research",
-    "https://w3id.org/digestgel/vocabularies/informal-education-including-youth-work": "informal education including youth work",
-    "https://w3id.org/digestgel/vocabularies/international-volunteering": "international volunteering",
-    "https://w3id.org/digestgel/vocabularies/media": "media",
-    "https://w3id.org/digestgel/vocabularies/non-formal-education": "non-formal education",
-    "https://w3id.org/digestgel/vocabularies/policy-related-research": "policy related research",
-    "https://w3id.org/digestgel/vocabularies/study-visits": "study visits",
-    "https://w3id.org/digestgel/vocabularies/teacher-education": "teacher education",
-    "https://w3id.org/digestgel/vocabularies/theoretical": "theoretical",
-    "https://w3id.org/digestgel/vocabularies/training-of-trainers": "training of trainers",
-    "https://w3id.org/digestgel/vocabularies/teaching-material": "teaching material"
+	"https://w3id.org/digestgel/vocabularies/community-work": "community work",
+	"https://w3id.org/digestgel/vocabularies/conceptual-publications": "conceptual publications",
+	"https://w3id.org/digestgel/vocabularies/educational-partnerships": "educational partnerships",
+	"https://w3id.org/digestgel/vocabularies/formal-education": "formal education",
+	"https://w3id.org/digestgel/vocabularies/higher-education-research": "higher education research",
+	"https://w3id.org/digestgel/vocabularies/informal-education-including-youth-work": "informal education including youth work",
+	"https://w3id.org/digestgel/vocabularies/international-volunteering": "international volunteering",
+	"https://w3id.org/digestgel/vocabularies/media": "media",
+	"https://w3id.org/digestgel/vocabularies/non-formal-education": "non-formal education",
+	"https://w3id.org/digestgel/vocabularies/policy-related-research": "policy related research",
+	"https://w3id.org/digestgel/vocabularies/study-visits": "study visits",
+	"https://w3id.org/digestgel/vocabularies/teacher-education": "teacher education",
+	"https://w3id.org/digestgel/vocabularies/theoretical": "theoretical",
+	"https://w3id.org/digestgel/vocabularies/training-of-trainers": "training of trainers",
+	"https://w3id.org/digestgel/vocabularies/teaching-material": "teaching material"
 }
 
 SECONDARY_SUBJECTS = ["community work",
-                    "conceptual publications",
-                    "educational partnerships",
-                    "formal education",
-                    "higher education research",
-                    "informal education including youth work",
-                    "international volunteering",
-                    "media",
-                    "non-formal education",
-                    "policy related research",
-                    "study visits",
-                    "teacher education",
-                    "theoretical",
-                    "theoretical & conceptual publications",
-                    "training of trainers"]
+					"conceptual publications",
+					"educational partnerships",
+					"formal education",
+					"higher education research",
+					"informal education including youth work",
+					"international volunteering",
+					"media",
+					"non-formal education",
+					"policy related research",
+					"study visits",
+					"teacher education",
+					"theoretical",
+					"theoretical & conceptual publications",
+					"training of trainers"]
 
 # missing  "theoretical & conceptual publications"
 SECONDARY_MAPPING = {
-    "https://w3id.org/digestgel/vocabularies/community-work": "community work",
-    "https://w3id.org/digestgel/vocabularies/conceptual-publications": "conceptual publications",
-    "https://w3id.org/digestgel/vocabularies/educational-partnerships": "educational partnerships",
-    "https://w3id.org/digestgel/vocabularies/formal-education": "formal education",
-    "https://w3id.org/digestgel/vocabularies/higher-education-research": "higher education research",
-    "https://w3id.org/digestgel/vocabularies/informal-education-including-youth-work": "informal education including youth work",
-    "https://w3id.org/digestgel/vocabularies/international-volunteering": "international volunteering",
-    "https://w3id.org/digestgel/vocabularies/media": "media",
-    "https://w3id.org/digestgel/vocabularies/non-formal-education": "non-formal education",
-    "https://w3id.org/digestgel/vocabularies/policy-related-research": "policy related research",
-    "https://w3id.org/digestgel/vocabularies/study-visits": "study visits",
-    "https://w3id.org/digestgel/vocabularies/teacher-education": "teacher education",
-    "https://w3id.org/digestgel/vocabularies/theoretical": "theoretical",
-    "https://w3id.org/digestgel/vocabularies/training-of-trainers": "training of trainers"
+	"https://w3id.org/digestgel/vocabularies/community-work": "community work",
+	"https://w3id.org/digestgel/vocabularies/conceptual-publications": "conceptual publications",
+	"https://w3id.org/digestgel/vocabularies/educational-partnerships": "educational partnerships",
+	"https://w3id.org/digestgel/vocabularies/formal-education": "formal education",
+	"https://w3id.org/digestgel/vocabularies/higher-education-research": "higher education research",
+	"https://w3id.org/digestgel/vocabularies/informal-education-including-youth-work": "informal education including youth work",
+	"https://w3id.org/digestgel/vocabularies/international-volunteering": "international volunteering",
+	"https://w3id.org/digestgel/vocabularies/media": "media",
+	"https://w3id.org/digestgel/vocabularies/non-formal-education": "non-formal education",
+	"https://w3id.org/digestgel/vocabularies/policy-related-research": "policy related research",
+	"https://w3id.org/digestgel/vocabularies/study-visits": "study visits",
+	"https://w3id.org/digestgel/vocabularies/teacher-education": "teacher education",
+	"https://w3id.org/digestgel/vocabularies/theoretical": "theoretical",
+	"https://w3id.org/digestgel/vocabularies/training-of-trainers": "training of trainers"
 }
 
 # auxiliary functions
@@ -214,7 +214,7 @@ def check_omonyms(cols):
 def get_entities(what):
   "interroga digest online e ritorna una tabella con nomi e URL delle persone"
   q = Q_PEOPLE if what == 'people'
-  	else Q_JOURNALS if what == 'journals'
+	else Q_JOURNALS if what == 'journals'
 	else Q_PUBLISHERS if what == 'publishers'
 	else Q_BOOKS if what == 'books'
 	else Q_PEOPLE
