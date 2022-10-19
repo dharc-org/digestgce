@@ -573,8 +573,8 @@ def create_graphs(articles_df,
             g.add(( g_name, URIRef("http://dbpedia.org/ontology/currentStatus") , Literal("published"), g_name ))
 
             # serialize ttl
-            #graph_data = g.serialize(format='ttl' , encoding='utf-8' )
-            #import_to_digest(graph_data, loc_id,api_key)
+            graph_data = g.serialize(format='ttl' , encoding='utf-8' )
+            import_to_digest(graph_data, loc_id,api_key)
     g.serialize(format='trig',destination='data.trig',  encoding='utf-8' )
 
     # download
