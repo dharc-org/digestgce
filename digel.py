@@ -177,27 +177,27 @@ SECONDARY_MAPPING = {
 
 # auxiliary functions
 def check_columns(user_columns, stable_columns, lowercase):
-  "Controlla se i nomi delle colonne sono conformi a quelli concordati"
-  errors = []
-  for v in user_columns:
-	v = v.lower() if lowercase else v
-	if v not in stable_columns:
-	  errors.append("1")
-	  raise TypeError("ERRORE - Il nome della colonna "+v+" non è corretto. Sostituisci e ricarica il file")
-  if len(errors) == 0:
-	print("OK -- i nomi delle colonne sono corretti")
+	"Controlla se i nomi delle colonne sono conformi a quelli concordati"
+	errors = []
+	for v in user_columns:
+		v = v.lower() if lowercase else v
+		if v not in stable_columns:
+			errors.append("1")
+			raise TypeError("ERRORE - Il nome della colonna "+v+" non è corretto. Sostituisci e ricarica il file")
+	if len(errors) == 0:
+		print("OK -- i nomi delle colonne sono corretti")
 
 def check_vocabulary(user_vocab, stable_vocab, column_name, lowercase=None,removechars=None):
-  "Controlla se i vocabolari nella tabella sono conformi ai vocabolari concordati"
-  errors = []
-  for v in user_vocab:
-	v = v.lower() if lowercase else v
-	v = v.replace('-',' ') if removechars else v
+	"Controlla se i vocabolari nella tabella sono conformi ai vocabolari concordati"
+	errors = []
+	for v in user_vocab:
+		v = v.lower() if lowercase else v
+		v = v.replace('-',' ') if removechars else v
 	if v not in stable_vocab:
-	  errors.append("1")
-	  raise TypeError("ERRORE - Il valore "+v+" nella colonna "+column_name+" non è corretto. Sostituisci e ricarica il file")
-  if len(errors) == 0:
-	print("OK -- il dizionario nella colonna "+column_name+" è corretto")
+		errors.append("1")
+		raise TypeError("ERRORE - Il valore "+v+" nella colonna "+column_name+" non è corretto. Sostituisci e ricarica il file")
+	if len(errors) == 0:
+		print("OK -- il dizionario nella colonna "+column_name+" è corretto")
 
 def check_omonyms(cols):
   "Prende valori dalle colonne e ritorna una lista di valori unici per review"
