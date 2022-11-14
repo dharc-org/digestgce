@@ -283,16 +283,41 @@ def create_graphs(articles_df,
             # STR: citation
             rec_title = ''
             add_year = str(int(float(row["year"]))) if (row["year"] != 'nan' and len(row["year"])) > 1 else ''
-            if "author_5" in row and row["author_5"] and row["author_5"] != 'nan' and len(row["author_5"]) > 1:
-                rec_title += row["author_1"].strip()+" et al. ("+add_year+')' if row["author_1"].strip() != 'nan' \
-                  else "No authors ("+add_year+').'
-            else:
-                rec_title += row["author_1"].strip() if row["author_1"].strip() != 'nan' else 'No author'
-                rec_title += ", "+row["author_2"].strip() if row["author_2"] != 'nan' else ''
-                rec_title += ", "+row["author_3"].strip() if row["author_3"] != 'nan' else ''
-                rec_title += " and "+row["author_4"].strip() if row["author_4"] != 'nan' else ''
+            # if "author_5" in row and row["author_5"] and row["author_5"] != 'nan' and len(row["author_5"]) > 1:
+            #     rec_title += row["author_1"].strip()+" et al. ("+add_year+')' if row["author_1"].strip() != 'nan' \
+            #       else "No authors ("+add_year+').'
+            # else:
+            if "author_1" in row and row["author_1"].strip() != 'nan':
+                rec_title += row["author_1"].strip() if row["author_1"].strip() != 'nan' else ''
+                rec_title += "; "+row["author_2"].strip() if row["author_2"] != 'nan' else ''
+                rec_title += "; "+row["author_3"].strip() if row["author_3"] != 'nan' else ''
+                rec_title += "; "+row["author_4"].strip() if row["author_4"] != 'nan' else ''
+                rec_title += "; "+row["author_5"].strip() if row["author_5"] != 'nan' else ''
+                rec_title += "; "+row["author_6"].strip() if row["author_6"] != 'nan' else ''
+                rec_title += "; "+row["author_7"].strip() if row["author_7"] != 'nan' else ''
+                rec_title += "; "+row["author_8"].strip() if row["author_8"] != 'nan' else ''
+                rec_title += "; "+row["author_9"].strip() if row["author_9"] != 'nan' else ''
+                rec_title += "; "+row["author_10"].strip() if row["author_10"] != 'nan' else ''
                 rec_title += " ("+ add_year+').'
-
+            else:
+                if 'book' in row["publication type"].lower():
+                    rec_title += row["editor_1"].strip() if row["editor_1"].strip() != 'nan' else ''
+                    if "editor_2" in row and row["editor_2"].strip() != 'nan':
+                        rec_title += "; "+row["editor_2"].strip() if row["editor_2"] != 'nan' else ''
+                        rec_title += "; "+row["editor_3"].strip() if row["editor_3"] != 'nan' else ''
+                        rec_title += "; "+row["editor_4"].strip() if row["editor_4"] != 'nan' else ''
+                        rec_title += "; "+row["editor_5"].strip() if row["editor_5"] != 'nan' else ''
+                        rec_title += "; "+row["editor_6"].strip() if row["editor_6"] != 'nan' else ''
+                        rec_title += "; "+row["editor_7"].strip() if row["editor_7"] != 'nan' else ''
+                        rec_title += "; "+row["editor_8"].strip() if row["editor_8"] != 'nan' else ''
+                        rec_title += "; "+row["editor_9"].strip() if row["editor_9"] != 'nan' else ''
+                        rec_title += "; "+row["editor_10"].strip() if row["editor_10"] != 'nan' else ''
+                        rec_title += ' (eds)'
+                    else:
+                        rec_title += ' (ed)'
+                    rec_title += " ("+ add_year+').'
+                else:
+                    rec_title += "No author ("+ add_year+').'
             ###########
             # STR: title
             res_title = row["title"].strip().replace("\"",'')
@@ -441,7 +466,10 @@ def create_graphs(articles_df,
                 if row["issue"] != 'nan' and len(row["issue"]) > 1:
                     issue = row["issue"].strip().replace('(','').replace(')','')
                     g.add(( res , PRISM.issueIdentifier , Literal(issue) , g_name ))
-                    rec_title += '('+issue+')'
+                    if row["volume"] != 'nan' and len(row["volume"]) > 1:
+                        rec_title += '('+issue+')'
+                    else:
+                        rec_title += ', '+issue
 
             ###########
             # URI: publisher editors and book title
@@ -450,7 +478,7 @@ def create_graphs(articles_df,
                 # URI: book editors
                 if 'book' in row["publication type"].lower() or ('incollection' in row["publication type"].lower() and row["journal"] == 'nan') or 'misc' in row["publication type"].lower():
                     editors_uri = authors_uri
-                    if "editor_1" in row:
+                    if "editor_1" in row and row["editor_1"] != 'nan':
                         # URI: first editor
                         if "editor_1" in row and row["editor_1"] != 'nan' and len(row["editor_1"]) > 1:
                             first_editor = match_people[row["editor_1"]][0] if row["editor_1"] in match_people else editors_uri[row["editor_1"].strip()]
@@ -499,33 +527,42 @@ def create_graphs(articles_df,
                             g.add(( res , BASE.eighthEditor , URIRef(eighth_editor) , g_name ))
                             g.add(( URIRef(eighth_editor) , RDFS.label , Literal(row["editor_8"].strip()) , g_name ))
 
-                    # URI: ninth editor
-                    if "editor_9" in row and row["editor_9"] != 'nan' and len(row["editor_9"]) > 1:
-                        ninth_editor = match_people[row["editor_9"]][0] if row["editor_9"] in match_people else editors_uri[row["editor_9"].strip()]
-                        g.add(( res , BASE.ninthEditor , URIRef(ninth_editor) , g_name ))
-                        g.add(( URIRef(ninth_editor) , RDFS.label , Literal(row["editor_9"].strip()) , g_name ))
+                        # URI: ninth editor
+                        if "editor_9" in row and row["editor_9"] != 'nan' and len(row["editor_9"]) > 1:
+                            ninth_editor = match_people[row["editor_9"]][0] if row["editor_9"] in match_people else editors_uri[row["editor_9"].strip()]
+                            g.add(( res , BASE.ninthEditor , URIRef(ninth_editor) , g_name ))
+                            g.add(( URIRef(ninth_editor) , RDFS.label , Literal(row["editor_9"].strip()) , g_name ))
 
-                    # URI: tenth editor
-                    if "editor_10" in row and row["editor_10"] != 'nan' and len(row["editor_10"]) > 1:
-                        tenth_editor = match_people[row["editor_10"]][0] if row["editor_10"] in match_people else editors_uri[row["editor_10"].strip()]
-                        g.add(( res , BASE.tenthEditor , URIRef(tenth_editor) , g_name ))
-                        g.add(( URIRef(tenth_editor) , RDFS.label , Literal(row["editor_10"].strip()) , g_name ))
+                        # URI: tenth editor
+                        if "editor_10" in row and row["editor_10"] != 'nan' and len(row["editor_10"]) > 1:
+                            tenth_editor = match_people[row["editor_10"]][0] if row["editor_10"] in match_people else editors_uri[row["editor_10"].strip()]
+                            g.add(( res , BASE.tenthEditor , URIRef(tenth_editor) , g_name ))
+                            g.add(( URIRef(tenth_editor) , RDFS.label , Literal(row["editor_10"].strip()) , g_name ))
 
                     # URI: et al.
-                    if "editor_5" in row and row["editor_5"] != 'nan' and len(row["editor_5"]) > 1:
-                        g.add(( res , BASE.otherEditors , URIRef(base+'et-al') , g_name ))
-                        g.add(( URIRef(base+'et-al') , RDFS.label , Literal('et al.') , g_name ))
+                    # if "editor_5" in row and row["editor_5"] != 'nan' and len(row["editor_5"]) > 1:
+                    #     g.add(( res , BASE.otherEditors , URIRef(base+'et-al') , g_name ))
+                    #     g.add(( URIRef(base+'et-al') , RDFS.label , Literal('et al.') , g_name ))
 
-                    if "editor_5" in row and row["editor_5"] != 'nan' and len(row["editor_5"]) > 1:
-                        rec_title += ' In: ' + row["editor_1"].strip()+" et al. (eds.) " if "editor_1" in row and row["editor_1"] != 'nan' \
-                            else " In:"
-                    else:
-                        rec_title += ' In: ' + row["editor_1"].strip() if "editor_1" in row and row["editor_1"] != 'nan' else ''
-                        rec_title += ", "+row["editor_2"].strip() if "editor_2" in row and row["editor_2"] != 'nan' else ''
-                        rec_title += ", "+row["editor_3"].strip() if "editor_3" in row and row["editor_3"] != 'nan' else ''
-                        rec_title += " and "+ row["editor_4"].strip() if "editor_4" in row and row["editor_4"] != 'nan' else ''
-                        rec_title += " (eds.)" if "editor_1" in row and row["editor_1"] != 'nan' else ''
-
+                    # if "editor_5" in row and row["editor_5"] != 'nan' and len(row["editor_5"]) > 1:
+                    #     rec_title += ' In ' + row["editor_1"].strip()+" et al. (eds.) " if "editor_1" in row and row["editor_1"] != 'nan' \
+                    #         else " In"
+                    # else:
+                    if len(row["author_1"].strip()) < 1:
+                        rec_title += ' In ' + row["editor_1"].strip()
+                        if "editor_2" in row and row["editor_2"] != 'nan':
+                            rec_title += "; "+row["editor_2"].strip()
+                            rec_title += "; "+row["editor_3"].strip() if "editor_3" in row and row["editor_3"] != 'nan' else ''
+                            rec_title += "; "+row["editor_4"].strip() if "editor_4" in row and row["editor_4"] != 'nan' else ''
+                            rec_title += "; "+row["editor_5"].strip() if "editor_5" in row and row["editor_5"] != 'nan' else ''
+                            rec_title += "; "+row["editor_6"].strip() if "editor_6" in row and row["editor_6"] != 'nan' else ''
+                            rec_title += "; "+row["editor_7"].strip() if "editor_7" in row and row["editor_7"] != 'nan' else ''
+                            rec_title += "; "+row["editor_8"].strip() if "editor_8" in row and row["editor_8"] != 'nan' else ''
+                            rec_title += "; "+row["editor_9"].strip() if "editor_9" in row and row["editor_9"] != 'nan' else ''
+                            rec_title += "; "+row["editor_10"].strip() if "editor_10" in row and row["editor_10"] != 'nan' else ''
+                            rec_title += " (eds), "
+                        else:
+                            rec_title += " (ed), "
                 if 'book chapter' in row["publication type"].lower() or ('incollection' in row["publication type"].lower() and row["journal"] == 'nan') or 'misc' in row["publication type"].lower():
                     # URI: book title
                     if "booktitle" in row:
@@ -533,25 +570,26 @@ def create_graphs(articles_df,
                             book_uri = match_books[row["booktitle"]][0] if row["booktitle"] in match_books else books_uri[row["booktitle"].strip()]
                             g.add(( res , FRBR.partOf , URIRef(book_uri) , g_name ))
                             g.add(( URIRef(book_uri) , RDFS.label , Literal(row["booktitle"].strip()) , g_name ))
-                            rec_title += ' '+row["booktitle"].strip()+'.'
-                if 'thesis' in row["publication type"].lower() or 'doctoral theses' in row["publication type"].lower() \
-                    or 'book chapter' in row["publication type"].lower() or ('incollection' in row["publication type"].lower() and row["journal"] == 'nan') or 'misc' in row["publication type"].lower() \
-                    or 'report' in row["publication type"].lower():
-                    # URI: publisher
-                    if "publisher" in row:
-                        if row["publisher"] != 'nan' and len(row["publisher"]) > 1:
-                            publisher = row["publisher"].strip()
-                            publisher_uri = match_publishers[row["publisher"]][0] if row["publisher"] in match_publishers else publishers_uri[row["publisher"].strip()]
-                            g.add(( res , DCTERMS.publisher , URIRef(publisher_uri) , g_name ))
-                            g.add(( URIRef(publisher_uri) , RDFS.label , Literal(publisher) , g_name ))
-                            rec_title += ' '+publisher+'.'
+                            rec_title += row["booktitle"].strip()+'.'
+                # if 'thesis' in row["publication type"].lower() or 'doctoral theses' in row["publication type"].lower() \
+                #     or 'book chapter' in row["publication type"].lower() or ('incollection' in row["publication type"].lower() and row["journal"] == 'nan') or 'misc' in row["publication type"].lower() \
+                #     or 'report' in row["publication type"].lower():
+
+                # URI: publisher
+                if "publisher" in row:
+                    if row["publisher"] != 'nan' and len(row["publisher"]) > 1:
+                        publisher = row["publisher"].strip()
+                        publisher_uri = match_publishers[row["publisher"]][0] if row["publisher"] in match_publishers else publishers_uri[row["publisher"].strip()]
+                        g.add(( res , DCTERMS.publisher , URIRef(publisher_uri) , g_name ))
+                        g.add(( URIRef(publisher_uri) , RDFS.label , Literal(publisher) , g_name ))
+                        rec_title += ' '+publisher
 
             ###########
             # STR: pages
             if 'pages' in row and row["pages"] != 'nan' and len(row["pages"]) > 1:
                 pages = row["pages"].strip().replace('(','').replace(')','')
                 g.add(( res , PRISM.pageRange , Literal(pages) , g_name ))
-                rec_title += ' '+pages
+                rec_title += ', '+pages
 
             ###########
             # STR: citation
