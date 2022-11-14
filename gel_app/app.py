@@ -19,6 +19,10 @@ from io import StringIO
 import forms, mapping, conf, queries , vocabs  , github_sync
 import utils as u
 #import threading
+import rdflib
+from rdflib import URIRef
+from pymantic import sparql
+from SPARQLWrapper import SPARQLWrapper, JSON
 
 web.config.debug = False
 
@@ -61,6 +65,7 @@ urls = (
 	prefix + '/nlp','Nlp',
 	prefix + '/login_mask', 'Login_mask',
 	prefix + '/export', 'Export',
+	prefix + '/import', 'Import',
 	prefix + '/api/(.+)', 'Results'
 )
 
@@ -562,6 +567,29 @@ class Export():
 		csv_file.close()
 		return returnval
 
+server = sparql.SPARQLServer(conf.myEndpoint)
+dir_path = os.path.dirname(os.path.realpath(__file__))
+# IMPORT
+class Import():
+	def GET(self):
+		return "Import data"
+	def POST(self):
+		data = web.input()
+		print(data)
+		if data.api_key == conf.import_key:
+			recordID = data.graph_name
+			print("received record:"+recordID)
+			# DUMP TTL
+			wd = rdflib.Graph(identifier=URIRef(conf.base+recordID+'/'))
+			wd.parse(data=data.data ,format="ttl")
+			wd.serialize(destination='records/'+recordID+'.ttl', format='ttl', encoding='utf-8')
+
+			# UPLOAD TO TRIPLESTORE
+
+			server.update('load <file:///'+dir_path+'/records/'+recordID+'.ttl> into graph <'+conf.base+recordID+'/>')
+			return json.dumps("SUCCESS -- Import done")
+		else:
+			return json.dumps("ERROR -- The api key provided is wrong")
 
 # FORM: create a new record (both logged in and anonymous users)
 
@@ -1255,6 +1283,7 @@ class Nlp(object):
 			results.append(result)
 		return json.dumps(results)
 
+# download txt
 class Results:
 	def GET(self, works_id):
 		base = conf.base
