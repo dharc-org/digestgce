@@ -27,15 +27,6 @@ FRBR = Namespace("http://purl.org/vocab/frbr/core#")
 PRISM = Namespace("http://prismstandard.org/namespaces/basic/2.0/")
 PROV = Namespace("http://www.w3.org/ns/prov#")
 
-g = ConjunctiveGraph()
-g.bind("gce", BASE)
-g.bind("schema", SCHEMA)
-g.bind("biro", BIRO)
-g.bind("fabio", FABIO)
-g.bind("frbr", FRBR)
-g.bind("prism", PRISM)
-g.bind("prov", PROV)
-
 # controlled vocabularies
 vocab_graph = URIRef(BASE+'vocabularies/')
 
@@ -260,6 +251,15 @@ def create_graphs(articles_df,
     for index, row in articles_df.iterrows():
         ids[index] = ts()
     for index, row in articles_df.iterrows():
+        g = ConjunctiveGraph()
+        g.bind("gce", BASE)
+        g.bind("schema", SCHEMA)
+        g.bind("biro", BIRO)
+        g.bind("fabio", FABIO)
+        g.bind("frbr", FRBR)
+        g.bind("prism", PRISM)
+        g.bind("prov", PROV)
+
         loc_id = ids[index]
         res = URIRef(base+loc_id)
         g_name = res+'/'
@@ -434,6 +434,7 @@ def create_graphs(articles_df,
                 # STR: volume
                 if row["volume"] != 'nan' and len(row["volume"]) > 1:
                     vol = row["volume"].strip().replace('(','').replace(')','')
+                    vol = str(int(float(vol))) if len(vol) > 1 else vol
                     g.add(( res , PRISM.volume , Literal(vol) , g_name ))
                     rec_title += ', '+vol
                 # STR: issue
@@ -586,6 +587,7 @@ def import_to_digest(graph_data, graph_name,api_key):
     headers = { 'Content-type': 'application/x-turtle',}
     params = {'graph_name': graph_name, 'api_key': api_key, 'data': graph_data}
     print("sending request for "+graph_name)
+    print("API URL:", api_url)
     response = requests.post(api_url, headers=headers, params=params)
     print("request sent "+graph_name, graph_data)
     print(response.status_code)
