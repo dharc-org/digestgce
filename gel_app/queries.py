@@ -613,7 +613,7 @@ def export_data():
 	  OPTIONAL {?article base:tenthEditor ?editor10uri. ?editor10uri rdfs:label ?editor10}
 	  OPTIONAL {?article <http://purl.org/dc/terms/publisher> ?publisheruri. ?publisheruri rdfs:label ?publisher}
 
-
+	  BIND(COALESCE(?title, '-') AS ?title ).
 	  BIND(COALESCE(?author1, '-') AS ?author1 ).
 	  BIND(COALESCE(?author2, '-') AS ?author2 ).
 	  BIND(COALESCE(?author3, '-') AS ?author3 ).
