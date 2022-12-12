@@ -78,12 +78,12 @@ COLUMNS = [ "reference (apa)", "publication type",
 		   "editor_8", "editor_9", "editor_10"]
 
 # "Reports"
-PUBLICATION_TYPES = ['Academic Journal Article',
- 'Academic Journal Issue',
- 'Report', 'Reports',
- 'Book Chapter',
+PUBLICATION_TYPES = ['Article',
+ 'Journal Issue',
+ 'Report',
+ 'Book chapter',
  'Book',
- 'Doctoral Thesis']
+ 'Doctoral Thesis', 'Grey Literature']
 
 LANGUAGES = ["Polish", "Spanish", "Portuguese", "Italian", "Dutch", "German", "French", "English"]
 
@@ -108,7 +108,6 @@ PRIMARY_SUBJECTS = ["community work",
 					"policy related research",
 					"study visits",
 					"teacher education",
-					"theoretical",
 					"theoretical & conceptual publications",
 					"training of trainers",
 					"teaching material"]
@@ -233,7 +232,7 @@ def ts():
 
 def label_to_vocab_uri(base,label):
     "ritorna un uri per i termini dei vocabolari controllati"
-    if "Theoretical & conceptual publications" in label:
+    if "theoretical & conceptual publications" in label.lower():
         res = URIRef(base+'vocabularies/theoretical')
     else:
         res = URIRef(base+'vocabularies/'+label.lower().replace(' ', '-'))
@@ -341,7 +340,7 @@ def create_graphs(articles_df,
                     for theme in themes:
                         theme = theme.replace('\'','')
                         theme_uri = label_to_vocab_uri(base,theme)
-                        theme_label = "theoretical" if "Theoretical & conceptual publications" in theme else theme.lower()
+                        theme_label = "theoretical" if "theoretical & conceptual publications" in theme.lower() else theme.lower()
                         g.add(( res , FABIO.hasPrimarySubjectTerm , theme_uri , g_name ))
                         g.add(( theme_uri , RDFS.label , Literal(theme_label) , g_name ))
 
@@ -353,7 +352,7 @@ def create_graphs(articles_df,
                     for theme in themes:
                         theme = theme.replace('\'','')
                         theme_uri = label_to_vocab_uri(base,theme)
-                        theme_label = "theoretical" if "Theoretical & conceptual publications" in theme else theme.lower()
+                        theme_label = "theoretical" if "theoretical & conceptual publications" in theme.lower() else theme.lower()
                         g.add(( res , FABIO.hasSubjectTerm , theme_uri , g_name ))
                         g.add(( theme_uri , RDFS.label , Literal(theme_label) , g_name ))
 

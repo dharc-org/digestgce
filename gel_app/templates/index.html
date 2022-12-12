@@ -33,8 +33,8 @@ $var project = project
         <button class="btn btn-dark" name="action" value="createRecord$varIDpage" type="submit">Create a new record</button>
       </form>
       <button onclick="window.location.href='setup'" title="setup" class="menu_btn">Setup <i class="fas fa-cogs"></i></button>
-      <section class="btn-group">
-        <button id="showTemplates" title="form template" class="menu_btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Templates</button>
+      <section class="btn-group dropright">
+        <button id="showTemplates" title="form template" class="menu_btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Show my templates</button>
         <section class="dropdown-menu gradient_dropbox" aria-labelledby="showTemplates" role="menu">
           $if len(templates) == 0:
             <p class="res_class_small">there are no templates yet</p>
@@ -47,7 +47,7 @@ $var project = project
       <section class="btn-group">
         <button id="selectTemplateClassButton" title="create a new template" class="menu_btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Create a new template</button>
         <section class="dropdown-menu gradient_dropbox" aria-labelledby="selectTemplateClassButton" role="menu">
-          <form id="selectTemplateClass" name="selectTemplateClass" class="" method="POST" onsubmit="event.preventDefault(); validateTemplateClass('selectTemplateClass')">
+          <form id="selectTemplateClass" class="" method="POST" onsubmit="event.preventDefault(); validateTemplateClass('selectTemplateClass')">
             <p>Choose a name</p>
             <input type="text" name="class_name" value="">
             <p>OWL class</p>
