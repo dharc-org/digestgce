@@ -578,10 +578,13 @@ def create_graphs(articles_df,
                 if "publisher" in row:
                     if row["publisher"] != 'nan' and len(row["publisher"]) > 1:
                         publisher = row["publisher"].strip()
-                        publisher_uri = match_publishers[row["publisher"]][0] if row["publisher"] in match_publishers else publishers_uri[row["publisher"].strip()]
-                        g.add(( res , DCTERMS.publisher , URIRef(publisher_uri) , g_name ))
-                        g.add(( URIRef(publisher_uri) , RDFS.label , Literal(publisher) , g_name ))
-                        rec_title += ' '+publisher
+                        publisher_uri = match_publishers[row["publisher"]][0] if row["publisher"] in match_publishers \
+                            else publishers_uri[row["publisher"].strip()] if row["publisher"].strip() in publishers_uri \
+                            else None
+                        if publisher_uri:
+                            g.add(( res , DCTERMS.publisher , URIRef(publisher_uri) , g_name ))
+                            g.add(( URIRef(publisher_uri) , RDFS.label , Literal(publisher) , g_name ))
+                            rec_title += ' '+publisher
 
             ###########
             # STR: pages
