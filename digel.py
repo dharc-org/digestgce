@@ -240,7 +240,7 @@ def label_to_vocab_uri(base,label):
 
 # create a graph for each row
 def create_graphs(articles_df,
-	authors_uri={}, journals_uri={}, publisher_uri={}, books_uri={},
+	authors_uri={}, journals_uri={}, publishers_uri={}, books_uri={},
 	api_key="",
 	match_people={}, match_journals={}, match_publishers={}, match_books={}):
 
