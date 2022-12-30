@@ -458,7 +458,6 @@ def create_graphs(articles_df,
                 # STR: volume
                 if row["volume"] != 'nan' and len(row["volume"]) > 1:
                     vol = row["volume"].strip().replace('(','').replace(')','')
-                    vol = str(int(float(vol))) if len(vol) > 1 else vol
                     g.add(( res , PRISM.volume , Literal(vol) , g_name ))
                     rec_title += ', '+vol
                 # STR: issue
