@@ -175,7 +175,6 @@ def check_duplicates(df):
     sparql.setReturnFormat(JSON)
     c = 0
     for index, row in df.iterrows():
-      if index > 300 and index < 350:
         first_author = str(row["author_1"]).strip().replace("\n"," ")
         title = str(row["title"]).strip().replace("\"",'').replace("\n"," ")
         year = str(row["year"]).strip().replace('(','').replace(')','')
