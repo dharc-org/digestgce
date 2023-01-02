@@ -240,7 +240,7 @@ def get_entities(what):
     sparql.setReturnFormat(JSON)
     sparql.setQuery(q)
     result = sparql.queryAndConvert()
-    df = pds.DataFrame(result['results']['bindings'])
+    df = pd.DataFrame(result['results']['bindings'])
     df.applymap(lambda x: x['value'])
     #df = sparql_dataframe.get(ENDPOINT, q, post=True)
     return df
