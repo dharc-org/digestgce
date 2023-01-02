@@ -83,7 +83,7 @@ PUBLICATION_TYPES = ['Article',
  'Report',
  'Book chapter',
  'Book',
- 'Doctoral Thesis', 'Grey Literature']
+ 'Doctoral Thesis', 'Doctoral thesis', 'Grey Literature']
 
 LANGUAGES = ["Polish", "Spanish", "Portuguese", "Italian", "Dutch", "German", "French", "English","Finnish","Slovak"]
 
