@@ -243,7 +243,7 @@ def get_entities(what):
     result = sparql.queryAndConvert()
     df = pds.DataFrame(result['results']['bindings'])
     df.applymap(lambda x: x['value'])
-    df = sparql_dataframe.get(ENDPOINT, q, post=True)
+    #df = sparql_dataframe.get(ENDPOINT, q, post=True)
     return df
 
 
