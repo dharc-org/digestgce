@@ -10,7 +10,7 @@ import numpy as np
 import sparql_dataframe
 from rdflib import Graph, Literal, RDF, URIRef, ConjunctiveGraph, Namespace
 from rdflib.namespace import XSD, OWL, RDF , RDFS, DCTERMS
-
+from SPARQLWrapper import SPARQLWrapper, JSON
 from google.colab import files
 
 base = 'https://w3id.org/digestgel/'
@@ -85,7 +85,7 @@ PUBLICATION_TYPES = ['Article',
  'Book',
  'Doctoral Thesis', 'Grey Literature']
 
-LANGUAGES = ["Polish", "Spanish", "Portuguese", "Italian", "Dutch", "German", "French", "English"]
+LANGUAGES = ["Polish", "Spanish", "Portuguese", "Italian", "Dutch", "German", "French", "English","Finnish","Slovak"]
 
 LANGUAGES_MAPPING = {"https://w3id.org/digestgel/vocabularies/polish": "Polish",
 "https://w3id.org/digestgel/vocabularies/spanish": "Spanish",
@@ -94,7 +94,9 @@ LANGUAGES_MAPPING = {"https://w3id.org/digestgel/vocabularies/polish": "Polish",
 "https://w3id.org/digestgel/vocabularies/dutch": "Dutch",
 "https://w3id.org/digestgel/vocabularies/german": "German",
 "https://w3id.org/digestgel/vocabularies/french": "French",
-"https://w3id.org/digestgel/vocabularies/english": "English"}
+"https://w3id.org/digestgel/vocabularies/english": "English",
+"https://w3id.org/digestgel/vocabularies/finnish": "Finnish",
+"https://w3id.org/digestgel/vocabularies/slovak": "Slovak"}
 
 PRIMARY_SUBJECTS = ["community work",
 					"conceptual publications",
@@ -165,6 +167,37 @@ SECONDARY_MAPPING = {
 	"https://w3id.org/digestgel/vocabularies/training-of-trainers": "training of trainers"
 }
 
+
+def check_duplicates(df):
+    "Controlla se nella tabella ci sono dei record già online e li rimuove temporaneamente"
+    ENDPOINT = "https://projects.dharc.unibo.it/digestgel/sparql"
+    sparql = SPARQLWrapper(ENDPOINT)
+    sparql.setReturnFormat(JSON)
+    c = 0
+    for index, row in df.iterrows():
+      if index > 300 and index < 350:
+        first_author = str(row["author_1"]).strip().replace("\n"," ")
+        title = str(row["title"]).strip().replace("\"",'').replace("\n"," ")
+        year = str(row["year"]).strip().replace('(','').replace(')','')
+        year = str(int(float(year)))
+
+        q = """
+        SELECT ?entity
+        WHERE {
+            ?person rdfs:label \""""+first_author+"""\" .
+            ?entity <https://w3id.org/digestgel/firstAuthor> ?person ;
+                rdfs:label \""""+title+"""\"; <http://prismstandard.org/namespaces/basic/2.0/publicationDate><https://w3id.org/digestgel/vocabularies/"""+year+"""> .}
+        """
+        sparql.setQuery(q)
+        res = sparql.queryAndConvert()
+        if len(res["results"]["bindings"]) > 0:
+          c +=1
+          print(c,"duplicate")
+          print("riga",index, "+2, title:", df.loc[[index]]['title'])
+          df = df.drop(index)
+    return df
+
+
 # auxiliary functions
 def check_columns(user_columns, stable_columns, lowercase):
 	"Controlla se i nomi delle colonne sono conformi a quelli concordati"
@@ -204,6 +237,12 @@ def check_omonyms(cols):
 def get_entities(what):
     "interroga digest online e ritorna una tabella con nomi e URL delle persone"
     q = Q_PEOPLE if what == 'people' else Q_JOURNALS if what == 'journals' else Q_PUBLISHERS if what == 'publishers' else Q_BOOKS if what == 'books' else Q_PEOPLE
+    sparql = SPARQLWrapper(ENDPOINT)
+    sparql.setReturnFormat(JSON)
+    sparql.setQuery(q)
+    result = sparql.queryAndConvert()
+    df = pds.DataFrame(result['results']['bindings'])
+    df.applymap(lambda x: x['value'])
     df = sparql_dataframe.get(ENDPOINT, q, post=True)
     return df
 
@@ -278,6 +317,8 @@ def create_graphs(articles_df,
                 g.add(( res , RDF.type , FABIO.JournalIssue , g_name ))
             if 'report' in row["publication type"].lower():
                 g.add(( res , RDF.type , FABIO.ReportDocument , g_name ))
+            if 'grey literature' in row["publication type"].lower():
+                g.add(( res , RDF.type , FABIO.Work , g_name ))
 
             # STR: citation
             rec_title = ''
