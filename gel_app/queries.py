@@ -532,7 +532,7 @@ def get_results(data):
 
 		if len(v) > 0 and field_type == "Textbox":
 			if field_value == "Literal":
-				q += "?"+k+" bds:search \""+v+"\" . ?"+k+" bds:minRelevance '0.5'^^xsd:double ; bds:matchAllTerms 'true' . "
+				q += "?"+k+" bds:search \""+v+"\*" . ?"+k+" bds:minRelevance '0.5'^^xsd:double ; bds:matchAllTerms 'true' . "
 				q += "?work <"+field_property+"> ?"+k+" . " if "|" not in field_property else "?work "+field_property+" ?"+k+" . "
 			if field_value == "URI":
 				q += "?"+k+" bds:search \""+v+"\" . ?"+k+" bds:minRelevance '0.5'^^xsd:double ; bds:matchAllTerms 'true'. "
@@ -561,6 +561,7 @@ def get_results(data):
 			<http://prismstandard.org/namespaces/basic/2.0/publicationDate> ?date \
 			OPTIONAL { ?work <http://prismstandard.org/namespaces/basic/2.0/doi> ?doi }.} \
 			ORDER BY ?date ?citation ?worktype"
+	print(q)
 	sparql_results = hello_blazegraph(q)
 	for result in sparql_results["results"]["bindings"]:
 		r = {}
