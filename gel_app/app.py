@@ -537,21 +537,13 @@ class Export():
 		sparqlVars = ['article', 'cit']
 		metaAttribute = 'value'
 		f = 'results'
-		# with open(f, 'w', newline='') as csvfile :
-		# 	writer = csv.DictWriter(csvfile, fieldnames=sparqlVars)
-		# 	writer.writeheader()
-		# 	for b in bindings :
-		# 		writer.writerow({var:b[var][metaAttribute] for var in sparqlVars})
-		# 	web.header('Content-Type','text/csv')
-		# 	web.header('Content-disposition', 'attachment; filename='+f)
-		# 	print("".join(f))
-		#return
+
 		csv_file = StringIO()
 		csv_writer = csv.writer(csv_file)
 		csv_writer.writerow(['article_id', 'type', 'citation','title','author1', 'author2',  'author3', 'author4',
 		'author5', 'author6', 'author7', 'author8', 'author9', 'author10', 'editor1', 'editor2',  'editor3', 'editor4',
 		'editor5', 'editor6', 'editor7', 'editor8', 'editor9', 'editor10', 'journal_or_booktitle', 'volume',
-		'issue', 'pages', 'year', 'publisher', 'language' , 'link' , 'doi' ])
+		'issue', 'pages', 'year', 'publisher', 'language' , 'link' , 'doi', 'topic' ])
 
 		for b in bindings:
 			csv_writer.writerow([b['article']['value'],b['type']['value'], b['cit']['value'],b['title']['value'],
@@ -560,7 +552,7 @@ class Export():
 			b['author9']['value'], b['author10']['value'], b['editor1']['value'], b['editor2']['value'], b['editor3']['value'], b['editor4']['value'],
 			b['editor5']['value'], b['editor6']['value'], b['editor7']['value'], b['editor8']['value'],
 			b['editor9']['value'], b['editor10']['value'], b['journal']['value'], b['volume']['value'],
-			b['issue']['value'], b['pages']['value'], b['year']['value'], b['publisher']['value'], b['language']['value'].lower() , b['link']['value'] , b['doi']['value']  ])
+			b['issue']['value'], b['pages']['value'], b['year']['value'], b['publisher']['value'], b['language']['value'].lower() , b['link']['value'] , b['doi']['value'], b['primary_topics']['value']  ])
 		web.header('Content-Type','text/csv')
 		web.header('Content-disposition', 'attachment; filename=digest.csv')
 		returnval = csv_file.getvalue()
