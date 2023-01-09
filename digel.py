@@ -216,9 +216,9 @@ def check_vocabulary(user_vocab, stable_vocab, column_name, lowercase=None,remov
 	for v in user_vocab:
 		v = v.lower() if lowercase else v
 		v = v.replace('-',' ') if removechars else v
-    	if v not in stable_vocab:
-    		errors.append("1")
-    		raise TypeError("ERRORE - Il valore "+v+" nella colonna "+column_name+" non è corretto. Sostituisci e ricarica il file")
+        if v not in stable_vocab:
+            errors.append("1")
+            raise TypeError("ERRORE - Il valore "+v+" nella colonna "+column_name+" non è corretto. Sostituisci e ricarica il file")
 	if len(errors) == 0:
 		print("OK -- il dizionario nella colonna "+column_name+" è corretto")
 
