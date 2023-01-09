@@ -178,7 +178,8 @@ def check_duplicates(df):
         first_author = str(row["author_1"]).strip().replace("\n"," ")
         title = str(row["title"]).strip().replace("\"",'').replace("\n"," ")
         year = str(row["year"]).strip().replace('(','').replace(')','')
-        year = str(int(float(year)))
+        if year:
+            year = str(int(float(year)))
 
         q = """
         SELECT ?entity
