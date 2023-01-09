@@ -105,6 +105,7 @@ PRIMARY_SUBJECTS = ["community work",
 					"higher education research",
 					"higher education",
 					"informal education including youth work",
+					"informal education",
 					"international volunteering",
 					"media",
 					"non-formal education",
@@ -143,6 +144,7 @@ SECONDARY_SUBJECTS = ["community work",
 					"higher education research",
 					"higher education",
 					"informal education including youth work",
+					"informal education",
 					"international volunteering",
 					"media",
 					"non-formal education",
@@ -280,6 +282,9 @@ def label_to_vocab_uri(base,label):
 		res = URIRef(base+'vocabularies/theoretical')
 	elif "higher education" in label.lower():
 		res = URIRef(base+'vocabularies/higher-education-research')
+	elif "informal education" in label.lower():
+		res = URIRef(base+'vocabularies/informal-education-including-youth-work')
+
 	else:
 		res = URIRef(base+'vocabularies/'+label.lower().replace(' ', '-'))
 	return res
