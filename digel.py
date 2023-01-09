@@ -103,6 +103,7 @@ PRIMARY_SUBJECTS = ["community work",
 					"educational partnerships",
 					"formal education",
 					"higher education research",
+					"higher education",
 					"informal education including youth work",
 					"international volunteering",
 					"media",
@@ -121,6 +122,7 @@ PRIMARY_MAPPING = {
 	"https://w3id.org/digestgel/vocabularies/conceptual-publications": "conceptual publications",
 	"https://w3id.org/digestgel/vocabularies/educational-partnerships": "educational partnerships",
 	"https://w3id.org/digestgel/vocabularies/formal-education": "formal education",
+	"https://w3id.org/digestgel/vocabularies/higher-education-research": "higher education",
 	"https://w3id.org/digestgel/vocabularies/higher-education-research": "higher education research",
 	"https://w3id.org/digestgel/vocabularies/informal-education-including-youth-work": "informal education including youth work",
 	"https://w3id.org/digestgel/vocabularies/international-volunteering": "international volunteering",
@@ -139,6 +141,7 @@ SECONDARY_SUBJECTS = ["community work",
 					"educational partnerships",
 					"formal education",
 					"higher education research",
+					"higher education",
 					"informal education including youth work",
 					"international volunteering",
 					"media",
@@ -157,6 +160,7 @@ SECONDARY_MAPPING = {
 	"https://w3id.org/digestgel/vocabularies/educational-partnerships": "educational partnerships",
 	"https://w3id.org/digestgel/vocabularies/formal-education": "formal education",
 	"https://w3id.org/digestgel/vocabularies/higher-education-research": "higher education research",
+	"https://w3id.org/digestgel/vocabularies/higher-education-research": "higher education",
 	"https://w3id.org/digestgel/vocabularies/informal-education-including-youth-work": "informal education including youth work",
 	"https://w3id.org/digestgel/vocabularies/international-volunteering": "international volunteering",
 	"https://w3id.org/digestgel/vocabularies/media": "media",
@@ -274,6 +278,8 @@ def label_to_vocab_uri(base,label):
 	"ritorna un uri per i termini dei vocabolari controllati"
 	if "theoretical & conceptual publications" in label.lower():
 		res = URIRef(base+'vocabularies/theoretical')
+	elif "higher education" in label.lower():
+		res = URIRef(base+'vocabularies/higher-education-research')
 	else:
 		res = URIRef(base+'vocabularies/'+label.lower().replace(' ', '-'))
 	return res
