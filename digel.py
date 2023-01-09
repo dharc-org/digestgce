@@ -212,10 +212,10 @@ def check_columns(user_columns, stable_columns, lowercase):
 
 def check_vocabulary(user_vocab, stable_vocab, column_name, lowercase=None,removechars=None):
 	"Controlla se i vocabolari nella tabella sono conformi ai vocabolari concordati"
-	errors = []
-	for v in user_vocab:
-		v = v.lower() if lowercase else v
-		v = v.replace('-',' ') if removechars else v
+    errors = []
+    for v in user_vocab:
+        v = v.lower() if lowercase else v
+        v = v.replace('-',' ') if removechars else v
         if v not in stable_vocab:
             errors.append("1")
             raise TypeError("ERRORE - Il valore "+v+" nella colonna "+column_name+" non è corretto. Sostituisci e ricarica il file")
