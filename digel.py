@@ -111,6 +111,7 @@ PRIMARY_SUBJECTS = ["community work",
 					"study visits",
 					"teacher education",
 					"theoretical & conceptual publications",
+					"theoretical",
 					"training of trainers",
 					"teaching material"]
 
