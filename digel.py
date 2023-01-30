@@ -223,7 +223,7 @@ def check_vocabulary(user_vocab, stable_vocab, column_name, lowercase=None,remov
 	for v in user_vocab:
 		v = v.lower() if lowercase else v
 		v = v.replace('-',' ') if removechars else v
-		if v not in stable_vocab:
+		if len(v.strip()) > 0 and v not in stable_vocab:
 			errors.append("1")
 			raise TypeError("ERRORE - Il valore "+v+" nella colonna "+column_name+" non è corretto. Sostituisci e ricarica il file")
 	if len(errors) == 0:
@@ -254,9 +254,9 @@ def get_entities(what):
 	return df
 
 
-def match_entities(user_values, labels, uris):
+def match_entities(user_values, labels, uris, search_type=''):
 	"compara la lista di nuovi nomi con i nomi delle entità presenti nel digest online"
-	labels = labels.tolist()
+	labels = [el.value for el in labels.tolist()] if search_type =='people' else labels.tolist()
 	uris = uris.tolist()
 	matches = defaultdict(list)
 	for user_val in user_values:
@@ -319,18 +319,20 @@ def create_graphs(articles_df,
 			# URI: type
 			if 'article' in row["publication type"].lower():
 				g.add(( res , RDF.type , FABIO.JournalArticle , g_name ))
-			if 'thesis' in row["publication type"].lower():
+			elif 'thesis' in row["publication type"].lower():
 				g.add(( res , RDF.type , FABIO.DoctoralThesis , g_name ))
-			if 'book chapter' in row["publication type"].lower():
+			elif 'book chapter' in row["publication type"].lower():
 				g.add(( res , RDF.type , FABIO.BookChapter , g_name ))
-			if 'book' in row["publication type"].lower() and 'chapter' not in row["publication type"].lower():
+			elif 'book' in row["publication type"].lower() and 'chapter' not in row["publication type"].lower():
 				g.add(( res , RDF.type , FABIO.Book , g_name ))
-			if 'issue' in row["publication type"].lower():
+			elif 'issue' in row["publication type"].lower():
 				g.add(( res , RDF.type , FABIO.JournalIssue , g_name ))
-			if 'report' in row["publication type"].lower():
+			elif 'report' in row["publication type"].lower():
 				g.add(( res , RDF.type , FABIO.ReportDocument , g_name ))
-			if 'grey literature' in row["publication type"].lower():
+			elif 'grey literature' in row["publication type"].lower():
 				g.add(( res , RDF.type , FABIO.Work , g_name ))
+            else:
+                g.add(( res , RDF.type , FABIO.Work , g_name ))
 
 			# STR: citation
 			rec_title = ''

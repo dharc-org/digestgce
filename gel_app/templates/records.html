@@ -16,13 +16,14 @@ $var project=project
 			$ attributes = "active" if first_class == res_class else ""
 			$ aria = "true" if first_class == res_class else "false"
 				<li class="nav-item" role="presentation">
+					<!-- ($alll[res_class]) -->
 					<a class="opentab nav-link $attributes"
 						id="$res_id"
 						data-mdb-toggle="tab"
 						href="#tab_$res_id"
 						role="tab"
 						aria-controls="tab_$res_id"
-						aria-selected="$aria">$res_class ($alll[res_class])</a>
+						aria-selected="$aria">$res_class</a>
 				</li>
 </ul>
 

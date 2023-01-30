@@ -378,6 +378,7 @@ footer .articleSubtitle {display: block !important; text-align: left; color: whi
 .logos {max-width: 30%; height: auto;  text-align: center; margin: 0 auto;}
 .logos.angel {width: 7%; margin-left: 2em;}
 .logos.gene {width: 12%;}
+.logos.sba {width: 18%;}
 .logos.unesco {width: 10%;margin-left: 2em;}
 option[selected='selected'] {
   background-color: var(--color_violet);

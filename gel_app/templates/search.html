@@ -85,13 +85,14 @@ $if results:
 			</section>
 		<section class="corners results col-10">
 			$for result in results:
+				$ work_type = result["worktype"] if result["worktype"] != 'Work' else 'Grey Literature'
 				<section class="row single_result">
 					<section class="col-md-2">
 						<input class="result_checkbox" type="checkbox" id="$result['workid']" value='$result["citation"]'>
 						$result["year"]
 					</section>
 					<section class="col-md-2">
-						<p class="resource_class">$result["worktype"]</p>
+						<p class="resource_class">$work_type</p>
 					</section>
 					<!--  -->
 					<section class="col-md-8">
