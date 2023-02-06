@@ -44,6 +44,7 @@ prefix = ''
 prefixLocal = prefix # REPLACE IF IN SUBFOLDER
 urls = (
 	prefix + '/', 'Login',
+	prefix + '/about', 'About',
 	prefix + '/setup', 'Setup',
 	prefix + '/template-(.+)', 'Template',
 	prefix + '/logout', 'Logout',
@@ -299,6 +300,19 @@ class Login:
 		data = web.input()
 		create_record(data)
 
+class About:
+	def GET(self):
+		""" About """
+
+		is_git_auth = github_sync.is_git_auth()
+		# REPLACE ONLY GCE
+		#github_repo_name = conf.repo_name if is_git_auth == True else None
+		github_repo_name = conf.repo_name if (is_git_auth == True and conf.loginUsers != 'True') else None
+		return render.about(user='anonymous',is_git_auth=is_git_auth,project=conf.myProject,payoff=conf.myPayoff,github_repo_name=github_repo_name)
+
+	def POST(self):
+		data = web.input()
+		create_record(data)
 
 class Logout:
 	def GET(self):
