@@ -7,3 +7,5 @@ Repository of the project Global Citizenship Education. It includes
  - a library (digel.py) for importing bulk data to the online digest
  - a [notebook](https://colab.research.google.com/drive/1CfMNPTn4Z2Lb2ewwM6-hwFqIZb3EJeez?usp=sharing) for importing data
  - the source code of the web application, based on [CLEF](https://polifonia-project.github.io/clef/)
+
+Docker image on [docker hub](https://hub.docker.com/repository/docker/marilenadaquino/digestgel/) (21.2.2023)
