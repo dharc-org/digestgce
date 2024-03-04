@@ -98,44 +98,27 @@ LANGUAGES_MAPPING = {"https://w3id.org/digestgel/vocabularies/polish": "Polish",
 "https://w3id.org/digestgel/vocabularies/finnish": "Finnish",
 "https://w3id.org/digestgel/vocabularies/slovak": "Slovak"}
 
-PRIMARY_SUBJECTS = ["community work",
-					"conceptual publications",
-					"educational partnerships",
-					"formal education",
-					"higher education research",
-					"higher education",
-					"informal education including youth work",
-					"informal education",
-					"international volunteering",
-					"media",
-					"non-formal education",
-					"policy related research",
-					"study visits",
-					"teacher education",
-					"theoretical & conceptual publications",
-					"theoretical",
-					"training of trainers",
-					"teaching material"]
+PRIMARY_SUBJECTS = ["Theoretical & conceptual publications",
+					"Formal education",
+					"Higher education research",
+					"Informal education including youth work, media & community work",
+					"International volunteering, study visits & educational partnerships",
+					"Non-formal education",
+					"Policy related research",
+					"Teacher education & training of trainers"]
 
 # missing  "theoretical & conceptual publications"
 PRIMARY_MAPPING = {
-	"https://w3id.org/digestgel/vocabularies/community-work": "community work",
-	"https://w3id.org/digestgel/vocabularies/conceptual-publications": "conceptual publications",
-	"https://w3id.org/digestgel/vocabularies/educational-partnerships": "educational partnerships",
-	"https://w3id.org/digestgel/vocabularies/formal-education": "formal education",
-	"https://w3id.org/digestgel/vocabularies/higher-education-research": "higher education",
-	"https://w3id.org/digestgel/vocabularies/higher-education-research": "higher education research",
-	"https://w3id.org/digestgel/vocabularies/informal-education-including-youth-work": "informal education including youth work",
-	"https://w3id.org/digestgel/vocabularies/international-volunteering": "international volunteering",
-	"https://w3id.org/digestgel/vocabularies/media": "media",
-	"https://w3id.org/digestgel/vocabularies/non-formal-education": "non-formal education",
-	"https://w3id.org/digestgel/vocabularies/policy-related-research": "policy related research",
-	"https://w3id.org/digestgel/vocabularies/study-visits": "study visits",
-	"https://w3id.org/digestgel/vocabularies/teacher-education": "teacher education",
-	"https://w3id.org/digestgel/vocabularies/theoretical": "theoretical",
-	"https://w3id.org/digestgel/vocabularies/training-of-trainers": "training of trainers",
-	"https://w3id.org/digestgel/vocabularies/teaching-material": "teaching material"
+	"https://w3id.org/digestgel/vocabularies/theoretical-and-conceptual-publications": "Theoretical & conceptual publications",
+	"https://w3id.org/digestgel/vocabularies/formal-education": "Formal education",
+	"https://w3id.org/digestgel/vocabularies/higher-education-research": "Higher education research",
+	"https://w3id.org/digestgel/vocabularies/informal-education-including-youth-work-media-and-community-work": "Informal education including youth work, media & community work",
+	"https://w3id.org/digestgel/vocabularies/international-volunteering-study-visits-and-educational-partnerships": "International volunteering, study visits & educational partnerships",
+	"https://w3id.org/digestgel/vocabularies/non-formal-education": "Non-formal education",
+	"https://w3id.org/digestgel/vocabularies/policy-related-research": "Policy related research",
+	"https://w3id.org/digestgel/vocabularies/teacher-education-and-training-of-trainers": "Teacher education & training of trainers"
 }
+
 
 SECONDARY_SUBJECTS = ["community work",
 					"conceptual publications",
@@ -198,10 +181,10 @@ def check_duplicates(df):
 		sparql.setQuery(q)
 		res = sparql.queryAndConvert()
 		if len(res["results"]["bindings"]) > 0:
-		  c +=1
-		  print(c,"duplicate")
-		  print("riga",index, "+2, title:", df.loc[[index]]['title'])
-		  df = df.drop(index)
+			c +=1
+			print(c,"duplicate")
+			print("riga",index, "+2, title:", df.loc[[index]]['title'])
+			df = df.drop(index)
 	return df
 
 
@@ -331,8 +314,8 @@ def create_graphs(articles_df,
 				g.add(( res , RDF.type , FABIO.ReportDocument , g_name ))
 			elif 'grey literature' in row["publication type"].lower():
 				g.add(( res , RDF.type , FABIO.Work , g_name ))
-            else:
-                g.add(( res , RDF.type , FABIO.Work , g_name ))
+			else:
+				g.add(( res , RDF.type , FABIO.Work , g_name ))
 
 			# STR: citation
 			rec_title = ''

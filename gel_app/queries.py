@@ -7,6 +7,7 @@ from rdflib.namespace import OWL, DC , DCTERMS, RDF , RDFS
 from rdflib.plugins.sparql import prepareQuery
 from pymantic import sparql
 import utils as u
+import re
 
 u.reload_config()
 
@@ -542,8 +543,10 @@ def get_results(data):
 		if len(v) > 0 and field_type == "Checkbox":
 			# group values for the same checkbox
 			field_id = [ field["id"] for field in fields if field["id"] in k ][0]
-			uri,label = v.split(',',1)
-			checkboxes[field_id].append( uri )
+			pattern = r',(?!\s)'
+			uris_and_label = re.split(pattern, v)
+			uri,label = uris_and_label[:-1],uris_and_label[-1]
+			checkboxes[field_id].extend( uri )
 			recap[field_name].append(label)
 			# checkboxes as union
 			# q += "?"+k+" bds:search \""+v+"*\" . ?"+k+" bds:minRelevance '0.3'^^xsd:double . "
@@ -572,7 +575,7 @@ def get_results(data):
 		r["workid"] = result["work"]["value"].rsplit('/', 1)[-1]
 		r["doi"] = result["doi"]["value"] if "doi" in result else ""
 		results.append(r)
-	#print(q, recap)
+	print(q, recap)
 	return results , recap
 
 def export_data():
