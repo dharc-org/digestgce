@@ -281,7 +281,7 @@ def get_template_from_class(res_type):
 	res_type: str
 		URI of the class associated to the template. Becomes dictionary value
 	"""
-
+	res_type = "http://purl.org/spar/fabio/ReportDocument" if res_type == "http://purl.org/spar/fabio/Work" else res_type
 	with open(TEMPLATE_LIST,'r') as tpl_file:
 		data = json.load(tpl_file)
 

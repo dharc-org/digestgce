@@ -79,8 +79,9 @@ $var project = project
         $for result in wikilist:
           $ modified = 'modified' if result[5] == 'modified' else ''
           $ type = [t["name"] for t in templates if t["type"] == result[6]]
+          $ type = type[0] if len(type) > 0 else "report"
           <tr class="$modified">
-            <td>$result[1] <p class="res_class_small">$type[0]</p></td>
+            <td>$result[1] <p class="res_class_small">$type</p></td>
             <td>$result[2]</td>
             <td>$result[3]</td>
             <td>$result[4][:10]<p class="res_class_small">$result[4][11:-1]</p></td>
