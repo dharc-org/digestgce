@@ -244,12 +244,15 @@ def ts():
 def label_to_vocab_uri(base,label):
 	"ritorna un uri per i termini dei vocabolari controllati"
 	if "theoretical & conceptual publications" in label.lower():
-		res = URIRef(base+'vocabularies/theoretical')
+		res = URIRef(base+'vocabularies/theoretical-and-conceptual-publications')
 	elif "higher education" in label.lower():
 		res = URIRef(base+'vocabularies/higher-education-research')
-	elif "informal education" in label.lower():
-		res = URIRef(base+'vocabularies/informal-education-including-youth-work')
-
+	elif "informal education including youth work, media & community work" in label.lower():
+		res = URIRef(base+'vocabularies/informal-education-including-youth-work-media-and-community-work')
+	elif "international volunteering, study visits & educational partnerships" in label.lower():
+		res = URIRef(base+'vocabularies/international-volunteering-study-visits-and-educational-partnerships')
+	elif "teacher education & training of trainers" in label.lower()
+		res = URIRef(base+'vocabularies/teacher-education-and-training-of-trainers')
 	else:
 		res = URIRef(base+'vocabularies/'+label.lower().replace(' ', '-'))
 	return res
@@ -360,7 +363,7 @@ def create_graphs(articles_df,
 					for theme in themes:
 						theme = theme.replace('\'','')
 						theme_uri = label_to_vocab_uri(base,theme)
-						theme_label = "theoretical" if "theoretical & conceptual publications" in theme.lower() else theme.lower()
+						theme_label = theme
 						g.add(( res , FABIO.hasPrimarySubjectTerm , theme_uri , g_name ))
 						g.add(( theme_uri , RDFS.label , Literal(theme_label) , g_name ))
 
@@ -372,7 +375,7 @@ def create_graphs(articles_df,
 					for theme in themes:
 						theme = theme.replace('\'','')
 						theme_uri = label_to_vocab_uri(base,theme)
-						theme_label = "theoretical" if "theoretical & conceptual publications" in theme.lower() else theme.lower()
+						theme_label = theme
 						g.add(( res , FABIO.hasSubjectTerm , theme_uri , g_name ))
 						g.add(( theme_uri , RDFS.label , Literal(theme_label) , g_name ))
 
