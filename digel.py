@@ -251,7 +251,7 @@ def label_to_vocab_uri(base,label):
 		res = URIRef(base+'vocabularies/informal-education-including-youth-work-media-and-community-work')
 	elif "international volunteering, study visits & educational partnerships" in label.lower():
 		res = URIRef(base+'vocabularies/international-volunteering-study-visits-and-educational-partnerships')
-	elif "teacher education & training of trainers" in label.lower()
+	elif "teacher education & training of trainers" in label.lower():
 		res = URIRef(base+'vocabularies/teacher-education-and-training-of-trainers')
 	else:
 		res = URIRef(base+'vocabularies/'+label.lower().replace(' ', '-'))
