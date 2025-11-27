@@ -85,7 +85,7 @@ PUBLICATION_TYPES = ['Article',
  'Book',
  'Doctoral Thesis', 'Doctoral thesis', 'Grey Literature']
 
-LANGUAGES = ["Polish", "Spanish", "Portuguese", "Italian", "Dutch", "German", "French", "English","Finnish","Slovak"]
+LANGUAGES = ["Polish", "Spanish", "Portuguese", "Italian", "Dutch", "German", "French", "English", "Finnish","Slovak", "Simplified Chinese"]
 
 LANGUAGES_MAPPING = {"https://w3id.org/digestgel/vocabularies/polish": "Polish",
 "https://w3id.org/digestgel/vocabularies/spanish": "Spanish",
@@ -96,7 +96,8 @@ LANGUAGES_MAPPING = {"https://w3id.org/digestgel/vocabularies/polish": "Polish",
 "https://w3id.org/digestgel/vocabularies/french": "French",
 "https://w3id.org/digestgel/vocabularies/english": "English",
 "https://w3id.org/digestgel/vocabularies/finnish": "Finnish",
-"https://w3id.org/digestgel/vocabularies/slovak": "Slovak"}
+"https://w3id.org/digestgel/vocabularies/slovak": "Slovak",
+"https://w3id.org/digestgel/vocabularies/simplified-chinese": "Simplified Chinese"}					}
 
 PRIMARY_SUBJECTS = ["Theoretical & conceptual publications",
 					"Formal education",
