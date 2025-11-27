@@ -97,7 +97,7 @@ LANGUAGES_MAPPING = {"https://w3id.org/digestgel/vocabularies/polish": "Polish",
 "https://w3id.org/digestgel/vocabularies/english": "English",
 "https://w3id.org/digestgel/vocabularies/finnish": "Finnish",
 "https://w3id.org/digestgel/vocabularies/slovak": "Slovak",
-"https://w3id.org/digestgel/vocabularies/simplified-chinese": "Simplified Chinese"}					}
+"https://w3id.org/digestgel/vocabularies/simplified-chinese": "Simplified Chinese"}	
 
 PRIMARY_SUBJECTS = ["Theoretical & conceptual publications",
 					"Formal education",
